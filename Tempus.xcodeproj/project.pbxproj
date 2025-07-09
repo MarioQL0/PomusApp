@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		BCEA7EA22E1F2B6600CAEC2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEA7E932E1F2B6400CAEC2F;
+			remoteInfo = Tempus;
+		};
+		BCEA7EAC2E1F2B6600CAEC2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEA7E932E1F2B6400CAEC2F;
+			remoteInfo = Tempus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BCEA7E942E1F2B6400CAEC2F /* Tempus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEA7EA12E1F2B6600CAEC2F /* TempusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TempusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEA7EAB2E1F2B6600CAEC2F /* TempusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TempusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		BCEA7E962E1F2B6400CAEC2F /* Tempus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tempus;
+			sourceTree = "<group>";
+		};
+		BCEA7EA42E1F2B6600CAEC2F /* TempusTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TempusTests;
+			sourceTree = "<group>";
+		};
+		BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TempusUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCEA7E912E1F2B6400CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9E2E1F2B6600CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA82E1F2B6600CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCEA7E8B2E1F2B6400CAEC2F = {
+			isa = PBXGroup;
+			children = (
+				BCEA7E962E1F2B6400CAEC2F /* Tempus */,
+				BCEA7EA42E1F2B6600CAEC2F /* TempusTests */,
+				BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */,
+				BCEA7E952E1F2B6400CAEC2F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BCEA7E952E1F2B6400CAEC2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCEA7E942E1F2B6400CAEC2F /* Tempus.app */,
+				BCEA7EA12E1F2B6600CAEC2F /* TempusTests.xctest */,
+				BCEA7EAB2E1F2B6600CAEC2F /* TempusUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCEA7E932E1F2B6400CAEC2F /* Tempus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EB52E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "Tempus" */;
+			buildPhases = (
+				BCEA7E902E1F2B6400CAEC2F /* Sources */,
+				BCEA7E912E1F2B6400CAEC2F /* Frameworks */,
+				BCEA7E922E1F2B6400CAEC2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7E962E1F2B6400CAEC2F /* Tempus */,
+			);
+			name = Tempus;
+			packageProductDependencies = (
+			);
+			productName = Tempus;
+			productReference = BCEA7E942E1F2B6400CAEC2F /* Tempus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCEA7EA02E1F2B6600CAEC2F /* TempusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EB82E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "TempusTests" */;
+			buildPhases = (
+				BCEA7E9D2E1F2B6600CAEC2F /* Sources */,
+				BCEA7E9E2E1F2B6600CAEC2F /* Frameworks */,
+				BCEA7E9F2E1F2B6600CAEC2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEA7EA32E1F2B6600CAEC2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7EA42E1F2B6600CAEC2F /* TempusTests */,
+			);
+			name = TempusTests;
+			packageProductDependencies = (
+			);
+			productName = TempusTests;
+			productReference = BCEA7EA12E1F2B6600CAEC2F /* TempusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BCEA7EAA2E1F2B6600CAEC2F /* TempusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EBB2E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "TempusUITests" */;
+			buildPhases = (
+				BCEA7EA72E1F2B6600CAEC2F /* Sources */,
+				BCEA7EA82E1F2B6600CAEC2F /* Frameworks */,
+				BCEA7EA92E1F2B6600CAEC2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEA7EAD2E1F2B6600CAEC2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */,
+			);
+			name = TempusUITests;
+			packageProductDependencies = (
+			);
+			productName = TempusUITests;
+			productReference = BCEA7EAB2E1F2B6600CAEC2F /* TempusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCEA7E8C2E1F2B6400CAEC2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					BCEA7E932E1F2B6400CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					BCEA7EA02E1F2B6600CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEA7E932E1F2B6400CAEC2F;
+					};
+					BCEA7EAA2E1F2B6600CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEA7E932E1F2B6400CAEC2F;
+					};
+				};
+			};
+			buildConfigurationList = BCEA7E8F2E1F2B6400CAEC2F /* Build configuration list for PBXProject "Tempus" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BCEA7E8B2E1F2B6400CAEC2F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BCEA7E952E1F2B6400CAEC2F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCEA7E932E1F2B6400CAEC2F /* Tempus */,
+				BCEA7EA02E1F2B6600CAEC2F /* TempusTests */,
+				BCEA7EAA2E1F2B6600CAEC2F /* TempusUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCEA7E922E1F2B6400CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9F2E1F2B6600CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA92E1F2B6600CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCEA7E902E1F2B6400CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9D2E1F2B6600CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA72E1F2B6600CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCEA7EA32E1F2B6600CAEC2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEA7E932E1F2B6400CAEC2F /* Tempus */;
+			targetProxy = BCEA7EA22E1F2B6600CAEC2F /* PBXContainerItemProxy */;
+		};
+		BCEA7EAD2E1F2B6600CAEC2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEA7E932E1F2B6400CAEC2F /* Tempus */;
+			targetProxy = BCEA7EAC2E1F2B6600CAEC2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BCEA7EB32E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCEA7EB42E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCEA7EB62E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCEA7EB72E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCEA7EB92E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tempus";
+			};
+			name = Debug;
+		};
+		BCEA7EBA2E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tempus";
+			};
+			name = Release;
+		};
+		BCEA7EBC2E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tempus;
+			};
+			name = Debug;
+		};
+		BCEA7EBD2E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tempus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCEA7E8F2E1F2B6400CAEC2F /* Build configuration list for PBXProject "Tempus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB32E1F2B6600CAEC2F /* Debug */,
+				BCEA7EB42E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EB52E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "Tempus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB62E1F2B6600CAEC2F /* Debug */,
+				BCEA7EB72E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EB82E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "TempusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB92E1F2B6600CAEC2F /* Debug */,
+				BCEA7EBA2E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EBB2E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "TempusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EBC2E1F2B6600CAEC2F /* Debug */,
+				BCEA7EBD2E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+}
