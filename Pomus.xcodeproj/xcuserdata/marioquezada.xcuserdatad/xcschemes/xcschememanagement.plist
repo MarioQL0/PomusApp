@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PomusWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Tempus.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>TempusWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>import ActivityKit import WidgetKit import SwiftUI  struct PomusWidget: Widget {     var body: some WidgetConfiguration {         ActivityConfiguration(for: PomusActivityAttributes.self) { context in             / MARK: - Vista para la Pantalla de Bloqueo             VStack(spacing: 12) {                 HStack {                     Image(systemName: "timer")                     Text(context.attributes.modeName)                         .font(.headline)                         .foregroundColor(Color(context.attributes.modeColorName))                     Spacer()                     Text(context.state.timeLeftString)                         .font(.title.monospacedDigit().bold())                         .contentTransition(.numericText())                 }                 ProgressView(value: context.state.progress)                     .tint(Color(context.attributes.modeColorName))             }             .padding()             .activityBackgroundTint(Color.black.opacity(0.3))             .activitySystemActionForegroundColor(Color.white)          } dynamicIsland: { context in             / MARK: - Vistas para la Dynamic Island             DynamicIsland {                 / Vista expandida (cuando mantienes presionada la isla)                 DynamicIslandExpandedRegion(.leading) {                     Label(context.attributes.modeName, systemImage: "timer")                         .font(.headline)                 }                 DynamicIslandExpandedRegion(.trailing) {                     Text(context.state.timeLeftString)                         .font(.title.monospacedDigit())                         .contentTransition(.numericText())                 }                 DynamicIslandExpandedRegion(.bottom) {                     ProgressView(value: context.state.progress)                         .tint(Color(context.attributes.modeColorName))                         .padding(.top, 5)                 }             } compactLeading: {                 / Vista compacta (lado izquierdo de la isla)                 Image(systemName: "timer")                     .foregroundColor(Color(context.attributes.modeColorName))             } compactTrailing: {                 / Vista compacta (lado derecho de la isla)                 Text(context.state.timeLeftString)                     .monospacedDigit()                     .foregroundColor(.white)             } minimal: {                 / Vista mínima (cuando hay otra alerta)                 Image(systemName: "timer")                     .foregroundColor(Color(context.attributes.modeColorName))             }         }     } import ActivityKit import WidgetKit import SwiftUI  struct PomusWidget: Widget {     var body: some WidgetConfiguration {         ActivityConfiguration(for: PomusActivityAttributes.self) { context in             / MARK: - Vista para la Pantalla de Bloqueo             VStack(spacing: 12) {                 HStack {                     Image(systemName: "timer")                     Text(context.attributes.modeName)                         .font(.headline)                         .foregroundColor(Color(context.attributes.modeColorName))                     Spacer()                     Text(context.state.timeLeftString)                         .font(.title.monospacedDigit().bold())                         .contentTransition(.numericText())                 }                 ProgressView(value: context.state.progress)                     .tint(Color(context.attributes.modeColorName))             }             .padding()             .activityBackgroundTint(Color.black.opacity(0.3))             .activitySystemActionForegroundColor(Color.white)          } dynamicIsland: { context in             / MARK: - Vistas para la Dynamic Island             DynamicIsland {                 / Vista expandida (cuando mantienes presionada la isla)                 DynamicIslandExpandedRegion(.leading) {                     Label(context.attributes.modeName, systemImage: "timer")                         .font(.headline)                 }                 DynamicIslandExpandedRegion(.trailing) {                     Text(context.state.timeLeftString)                         .font(.title.monospacedDigit())                         .contentTransition(.numericText())                 }                 DynamicIslandExpandedRegion(.bottom) {                     ProgressView(value: context.state.progress)                         .tint(Color(context.attributes.modeColorName))                         .padding(.top, 5)                 }             } compactLeading: {                 / Vista compacta (lado izquierdo de la isla)                 Image(systemName: "timer")                     .foregroundColor(Color(context.attributes.modeColorName))             } compactTrailing: {                 / Vista compacta (lado derecho de la isla)                 Text(context.state.timeLeftString)                     .monospacedDigit()                     .foregroundColor(.white)             } minimal: {                 / Vista mínima (cuando hay otra alerta)                 Image(systemName: "timer")                     .foregroundColor(Color(context.attributes.modeColorName))             }         }     } PomusWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>BCEA7E932E1F2B6400CAEC2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BCEA7EA02E1F2B6600CAEC2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BCEA7EAA2E1F2B6600CAEC2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

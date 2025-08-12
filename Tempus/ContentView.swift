@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Tempus
+//  Times Up
 //
-//  Created by Luis Mario Quezada Elizondo on 09/07/25.
+//  Created by Luis Mario Quezada Elizondo on 11/07/25.
 //
 
 import SwiftUI

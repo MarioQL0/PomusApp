@@ -1,0 +1,863 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC449E362E21BFAE00BB2488 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC449E352E21BFAE00BB2488 /* TasksView.swift */; };
+		BC449E392E21C03F00BB2488 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC449E382E21C03F00BB2488 /* EditTaskView.swift */; };
+		BC449E3B2E21C04F00BB2488 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC449E3A2E21C04F00BB2488 /* AddTaskView.swift */; };
+		BC7209C32E1FF19700DE5F2F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209C22E1FF19700DE5F2F /* MainView.swift */; };
+		BC7209C52E1FF5C900DE5F2F /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209C42E1FF5C900DE5F2F /* Tasks.swift */; };
+		BC7209C72E1FF5E000DE5F2F /* PomodoroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209C62E1FF5E000DE5F2F /* PomodoroViewModel.swift */; };
+		BC7209C92E1FF5FD00DE5F2F /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209C82E1FF5FD00DE5F2F /* ClockView.swift */; };
+		BC7209CB2E1FF60700DE5F2F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209CA2E1FF60700DE5F2F /* StatsView.swift */; };
+		BC7209CD2E1FF61500DE5F2F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7209CC2E1FF61500DE5F2F /* SettingsView.swift */; };
+		BC97F4622E451C97005F9450 /* PomusActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC97F4612E451C97005F9450 /* PomusActivityAttributes.swift */; };
+		BC97F4682E451CAE005F9450 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7209D82E20513C00DE5F2F /* WidgetKit.framework */; };
+		BC97F4692E451CAE005F9450 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7209DA2E20513C00DE5F2F /* SwiftUI.framework */; };
+		BC97F4782E451CB1005F9450 /* PomusWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC97F4672E451CAE005F9450 /* PomusWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BC97F47D2E452439005F9450 /* PomusActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC97F4612E451C97005F9450 /* PomusActivityAttributes.swift */; };
+		BC97F4832E4550BD005F9450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCA7BE482E1F6D9100C1581E /* Assets.xcassets */; };
+		BCA7BE4B2E1F6D9100C1581E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCA7BE482E1F6D9100C1581E /* Assets.xcassets */; };
+		BCAD05E62E2308E3009E3435 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAD05E52E2308E3009E3435 /* OnboardingView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC97F4762E451CB1005F9450 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC97F4662E451CAE005F9450;
+			remoteInfo = PomusWidgetExtension;
+		};
+		BCEA7EA22E1F2B6600CAEC2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEA7E932E1F2B6400CAEC2F;
+			remoteInfo = Tempus;
+		};
+		BCEA7EAC2E1F2B6600CAEC2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEA7E932E1F2B6400CAEC2F;
+			remoteInfo = Tempus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC7209F12E20513E00DE5F2F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BC97F4782E451CB1005F9450 /* PomusWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BC449E352E21BFAE00BB2488 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		BC449E382E21C03F00BB2488 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
+		BC449E3A2E21C04F00BB2488 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		BC7209C22E1FF19700DE5F2F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		BC7209C42E1FF5C900DE5F2F /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
+		BC7209C62E1FF5E000DE5F2F /* PomodoroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewModel.swift; sourceTree = "<group>"; };
+		BC7209C82E1FF5FD00DE5F2F /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		BC7209CA2E1FF60700DE5F2F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		BC7209CC2E1FF61500DE5F2F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BC7209D82E20513C00DE5F2F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BC7209DA2E20513C00DE5F2F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BC97F4612E451C97005F9450 /* PomusActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomusActivityAttributes.swift; sourceTree = "<group>"; };
+		BC97F4672E451CAE005F9450 /* PomusWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PomusWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA7BE482E1F6D9100C1581E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCAD05E52E2308E3009E3435 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		BCEA7E942E1F2B6400CAEC2F /* Pomus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEA7EA12E1F2B6600CAEC2F /* PomusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEA7EAB2E1F2B6600CAEC2F /* PomusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BC7209CF2E1FFD4400DE5F2F /* Exceptions for "Tempus" folder in "Pomus" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BCEA7E932E1F2B6400CAEC2F /* Pomus */;
+		};
+		BC97F47C2E451CB1005F9450 /* Exceptions for "PomusWidget" folder in "PomusWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BC97F4662E451CAE005F9450 /* PomusWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		BC97F46A2E451CAE005F9450 /* PomusWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BC97F47C2E451CB1005F9450 /* Exceptions for "PomusWidget" folder in "PomusWidgetExtension" target */,
+			);
+			path = PomusWidget;
+			sourceTree = "<group>";
+		};
+		BCEA7E962E1F2B6400CAEC2F /* Tempus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BC7209CF2E1FFD4400DE5F2F /* Exceptions for "Tempus" folder in "Pomus" target */,
+			);
+			path = Tempus;
+			sourceTree = "<group>";
+		};
+		BCEA7EA42E1F2B6600CAEC2F /* TempusTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TempusTests;
+			sourceTree = "<group>";
+		};
+		BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TempusUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC97F4642E451CAE005F9450 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC97F4692E451CAE005F9450 /* SwiftUI.framework in Frameworks */,
+				BC97F4682E451CAE005F9450 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E912E1F2B6400CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9E2E1F2B6600CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA82E1F2B6600CAEC2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC449E372E21C02E00BB2488 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				BC449E382E21C03F00BB2488 /* EditTaskView.swift */,
+				BC449E3A2E21C04F00BB2488 /* AddTaskView.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		BC7209D72E20513C00DE5F2F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC7209D82E20513C00DE5F2F /* WidgetKit.framework */,
+				BC7209DA2E20513C00DE5F2F /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC9362D32E1F2BA300C083AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC7209C22E1FF19700DE5F2F /* MainView.swift */,
+				BC7209C82E1FF5FD00DE5F2F /* ClockView.swift */,
+				BC7209CA2E1FF60700DE5F2F /* StatsView.swift */,
+				BC7209CC2E1FF61500DE5F2F /* SettingsView.swift */,
+				BC449E352E21BFAE00BB2488 /* TasksView.swift */,
+				BCAD05E52E2308E3009E3435 /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BCA7BE542E1F6EBB00C1581E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC7209C42E1FF5C900DE5F2F /* Tasks.swift */,
+				BC97F4612E451C97005F9450 /* PomusActivityAttributes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BCA7BE552E1F6EBB00C1581E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BCA7BE482E1F6D9100C1581E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BCA7BE562E1F6EBB00C1581E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BCA7BE572E1F6EBB00C1581E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BC7209C62E1FF5E000DE5F2F /* PomodoroViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BCEA7E8B2E1F2B6400CAEC2F = {
+			isa = PBXGroup;
+			children = (
+				BCA7BE542E1F6EBB00C1581E /* Models */,
+				BCA7BE552E1F6EBB00C1581E /* Resources */,
+				BCA7BE562E1F6EBB00C1581E /* Services */,
+				BCA7BE572E1F6EBB00C1581E /* ViewModels */,
+				BC9362D32E1F2BA300C083AC /* Views */,
+				BC449E372E21C02E00BB2488 /* Tasks */,
+				BCEA7E962E1F2B6400CAEC2F /* Tempus */,
+				BCEA7EA42E1F2B6600CAEC2F /* TempusTests */,
+				BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */,
+				BC97F46A2E451CAE005F9450 /* PomusWidget */,
+				BC7209D72E20513C00DE5F2F /* Frameworks */,
+				BCEA7E952E1F2B6400CAEC2F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BCEA7E952E1F2B6400CAEC2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCEA7E942E1F2B6400CAEC2F /* Pomus.app */,
+				BCEA7EA12E1F2B6600CAEC2F /* PomusTests.xctest */,
+				BCEA7EAB2E1F2B6600CAEC2F /* PomusUITests.xctest */,
+				BC97F4672E451CAE005F9450 /* PomusWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC97F4662E451CAE005F9450 /* PomusWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC97F4792E451CB1005F9450 /* Build configuration list for PBXNativeTarget "PomusWidgetExtension" */;
+			buildPhases = (
+				BC97F4632E451CAE005F9450 /* Sources */,
+				BC97F4642E451CAE005F9450 /* Frameworks */,
+				BC97F4652E451CAE005F9450 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BC97F46A2E451CAE005F9450 /* PomusWidget */,
+			);
+			name = PomusWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = PomusWidgetExtension;
+			productReference = BC97F4672E451CAE005F9450 /* PomusWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BCEA7E932E1F2B6400CAEC2F /* Pomus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EB52E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "Pomus" */;
+			buildPhases = (
+				BCEA7E902E1F2B6400CAEC2F /* Sources */,
+				BCEA7E912E1F2B6400CAEC2F /* Frameworks */,
+				BCEA7E922E1F2B6400CAEC2F /* Resources */,
+				BC7209F12E20513E00DE5F2F /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC97F4772E451CB1005F9450 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7E962E1F2B6400CAEC2F /* Tempus */,
+			);
+			name = Pomus;
+			packageProductDependencies = (
+			);
+			productName = Tempus;
+			productReference = BCEA7E942E1F2B6400CAEC2F /* Pomus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCEA7EA02E1F2B6600CAEC2F /* PomusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EB82E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "PomusTests" */;
+			buildPhases = (
+				BCEA7E9D2E1F2B6600CAEC2F /* Sources */,
+				BCEA7E9E2E1F2B6600CAEC2F /* Frameworks */,
+				BCEA7E9F2E1F2B6600CAEC2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEA7EA32E1F2B6600CAEC2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7EA42E1F2B6600CAEC2F /* TempusTests */,
+			);
+			name = PomusTests;
+			packageProductDependencies = (
+			);
+			productName = TempusTests;
+			productReference = BCEA7EA12E1F2B6600CAEC2F /* PomusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BCEA7EAA2E1F2B6600CAEC2F /* PomusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEA7EBB2E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "PomusUITests" */;
+			buildPhases = (
+				BCEA7EA72E1F2B6600CAEC2F /* Sources */,
+				BCEA7EA82E1F2B6600CAEC2F /* Frameworks */,
+				BCEA7EA92E1F2B6600CAEC2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEA7EAD2E1F2B6600CAEC2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEA7EAE2E1F2B6600CAEC2F /* TempusUITests */,
+			);
+			name = PomusUITests;
+			packageProductDependencies = (
+			);
+			productName = TempusUITests;
+			productReference = BCEA7EAB2E1F2B6600CAEC2F /* PomusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCEA7E8C2E1F2B6400CAEC2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					BC97F4662E451CAE005F9450 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					BCEA7E932E1F2B6400CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					BCEA7EA02E1F2B6600CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEA7E932E1F2B6400CAEC2F;
+					};
+					BCEA7EAA2E1F2B6600CAEC2F = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEA7E932E1F2B6400CAEC2F;
+					};
+				};
+			};
+			buildConfigurationList = BCEA7E8F2E1F2B6400CAEC2F /* Build configuration list for PBXProject "Pomus" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				es,
+			);
+			mainGroup = BCEA7E8B2E1F2B6400CAEC2F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BCEA7E952E1F2B6400CAEC2F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCEA7E932E1F2B6400CAEC2F /* Pomus */,
+				BCEA7EA02E1F2B6600CAEC2F /* PomusTests */,
+				BCEA7EAA2E1F2B6600CAEC2F /* PomusUITests */,
+				BC97F4662E451CAE005F9450 /* PomusWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC97F4652E451CAE005F9450 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC97F4832E4550BD005F9450 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E922E1F2B6400CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCA7BE4B2E1F6D9100C1581E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9F2E1F2B6600CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA92E1F2B6600CAEC2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC97F4632E451CAE005F9450 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC97F47D2E452439005F9450 /* PomusActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E902E1F2B6400CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC449E3B2E21C04F00BB2488 /* AddTaskView.swift in Sources */,
+				BC7209C72E1FF5E000DE5F2F /* PomodoroViewModel.swift in Sources */,
+				BC449E362E21BFAE00BB2488 /* TasksView.swift in Sources */,
+				BC7209CD2E1FF61500DE5F2F /* SettingsView.swift in Sources */,
+				BC7209C92E1FF5FD00DE5F2F /* ClockView.swift in Sources */,
+				BC7209C52E1FF5C900DE5F2F /* Tasks.swift in Sources */,
+				BC7209C32E1FF19700DE5F2F /* MainView.swift in Sources */,
+				BC7209CB2E1FF60700DE5F2F /* StatsView.swift in Sources */,
+				BCAD05E62E2308E3009E3435 /* OnboardingView.swift in Sources */,
+				BC449E392E21C03F00BB2488 /* EditTaskView.swift in Sources */,
+				BC97F4622E451C97005F9450 /* PomusActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7E9D2E1F2B6600CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEA7EA72E1F2B6600CAEC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC97F4772E451CB1005F9450 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC97F4662E451CAE005F9450 /* PomusWidgetExtension */;
+			targetProxy = BC97F4762E451CB1005F9450 /* PBXContainerItemProxy */;
+		};
+		BCEA7EA32E1F2B6600CAEC2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEA7E932E1F2B6400CAEC2F /* Pomus */;
+			targetProxy = BCEA7EA22E1F2B6600CAEC2F /* PBXContainerItemProxy */;
+		};
+		BCEA7EAD2E1F2B6600CAEC2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEA7E932E1F2B6400CAEC2F /* Pomus */;
+			targetProxy = BCEA7EAC2E1F2B6600CAEC2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BC97F47A2E451CB1005F9450 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 398QF8G822;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PomusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PomusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus.PomusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC97F47B2E451CB1005F9450 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 398QF8G822;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PomusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PomusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus.PomusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCEA7EB32E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCEA7EB42E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCEA7EB62E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 398QF8G822;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tempus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pomus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCEA7EB72E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 398QF8G822;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tempus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pomus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.Tempus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCEA7EB92E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pomus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pomus";
+			};
+			name = Debug;
+		};
+		BCEA7EBA2E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pomus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pomus";
+			};
+			name = Release;
+		};
+		BCEA7EBC2E1F2B6600CAEC2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tempus;
+			};
+			name = Debug;
+		};
+		BCEA7EBD2E1F2B6600CAEC2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WQMD77Y9X4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Quepri.TempusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tempus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC97F4792E451CB1005F9450 /* Build configuration list for PBXNativeTarget "PomusWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC97F47A2E451CB1005F9450 /* Debug */,
+				BC97F47B2E451CB1005F9450 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7E8F2E1F2B6400CAEC2F /* Build configuration list for PBXProject "Pomus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB32E1F2B6600CAEC2F /* Debug */,
+				BCEA7EB42E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EB52E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "Pomus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB62E1F2B6600CAEC2F /* Debug */,
+				BCEA7EB72E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EB82E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "PomusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EB92E1F2B6600CAEC2F /* Debug */,
+				BCEA7EBA2E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEA7EBB2E1F2B6600CAEC2F /* Build configuration list for PBXNativeTarget "PomusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEA7EBC2E1F2B6600CAEC2F /* Debug */,
+				BCEA7EBD2E1F2B6600CAEC2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCEA7E8C2E1F2B6400CAEC2F /* Project object */;
+}

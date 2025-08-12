@@ -1,0 +1,667 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Add Task" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar Tarea"
+          }
+        }
+      }
+    },
+    "Add your first task using the + button." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade tu primer tarea usando el botón +"
+          }
+        }
+      }
+    },
+    "Adjust the duration in minutes for each session type. Changes will apply to new sessions." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajusta la duración en minutos por cada tipo de sesión. Los cambios se aplicaran en nuevas sesiones"
+          }
+        }
+      }
+    },
+    "Are you sure you want to restore all settings to their original values?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres restaurar todos los ajustes a sus valores originales?"
+          }
+        }
+      }
+    },
+    "Automation" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatización"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Clean" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpiar"
+          }
+        }
+      }
+    },
+    "Clear" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpiar"
+          }
+        }
+      }
+    },
+    "Clear Completed Tasks?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Limpiar Tareas Completadas?"
+          }
+        }
+      }
+    },
+    "Complete your first pomodoro to see your progress here!" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Completa tu primer pomodoro para ver tu progreso aquí!"
+          }
+        }
+      }
+    },
+    "Completed" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completado"
+          }
+        }
+      }
+    },
+    "Continuous Mode" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo continuo"
+          }
+        }
+      }
+    },
+    "Day" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Día"
+          }
+        }
+      }
+    },
+    "Define how many focus sessions you need to complete before taking a long break." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Define cuantas sesiones de enfoque necesitas antes del descanso largo"
+          }
+        }
+      }
+    },
+    "Define how many focus sessions you need to complete before taking a long break. 'Reset Current Cycle' will restart the session count to zero." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Define cuántas sesiones de enfoque necesitas completar antes de tomar un descanso largo. 'Reiniciar Ciclo Actual' pondrá el contador de sesiones en cero."
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar "
+          }
+        }
+      }
+    },
+    "e.g., Finish the sales report..." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ej: Terminar el reporte de ventas..."
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar"
+          }
+        }
+      }
+    },
+    "Edit Task" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar Tareas"
+          }
+        }
+      }
+    },
+    "Edit Task Text" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar texto de la Tarea"
+          }
+        }
+      }
+    },
+    "Focus" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enfocarse"
+          }
+        }
+      }
+    },
+    "Focus time per day" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enfoque por día"
+          }
+        }
+      }
+    },
+    "Focus: %lld min" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enfoque: %lld min"
+          }
+        }
+      }
+    },
+    "General Summary" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen general"
+          }
+        }
+      }
+    },
+    "Get Started" : {
+
+    },
+    "Hello, world!" : {
+
+    },
+    "Long Break: %lld min" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descanso Largo: %lld min"
+          }
+        }
+      }
+    },
+    "Mark as completed" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar como completado"
+          }
+        }
+      }
+    },
+    "Minutes" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MInutos "
+          }
+        }
+      }
+    },
+    "New Task" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva Tarea"
+          }
+        }
+      }
+    },
+    "New task..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., Finish the sales report..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ej: Terminar el reporte de ventas..."
+          }
+        }
+      }
+    },
+    "No Statistics" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin Estadísticas"
+          }
+        }
+      }
+    },
+    "No Tasks" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin Tareas"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_BODY_BREAK_DONE" : {
+      "comment" : "Break session finished",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Break is over. Time to focus!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El descanso ha terminado. ¡A concentrarse!"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_BODY_FOCUS_DONE" : {
+      "comment" : "Focus session finished",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great work! Time for a well-deserved break."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "¡Buen trabajo! Es hora de un merecido descanso."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_TITLE_DONE" : {
+      "comment" : "Notification title",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time's up!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "¡Tiempo terminado!"
+          }
+        }
+      }
+    },
+    "NSUserNotificationsUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempus uses notifications to alert you when a focus or break session is over, helping you stay on track even when the app is in the background."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tempus usa las notificaciones para avisarte cuando una sesión de enfoque o descanso ha terminado, ayudándote a mantener tu ritmo incluso con la app en segundo plano."
+          }
+        }
+      }
+    },
+    "Pending" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendiente"
+          }
+        }
+      }
+    },
+    "Pomodoro Cycle" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciclo Pomodoro"
+          }
+        }
+      }
+    },
+    "Pomus" : {
+
+    },
+    "Reset Current Cycle" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reiniciar Ciclo Actual"
+          }
+        }
+      }
+    },
+    "Restore" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar"
+          }
+        }
+      }
+    },
+    "Restore Default Settings?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Restaurar Ajustes?"
+          }
+        }
+      }
+    },
+    "Restore Defaults" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar Valores"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
+          }
+        }
+      }
+    },
+    "Sessions before long break: %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions: %lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sesiones: %lld"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Short Break: %lld min" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descanso corto: %lld min"
+          }
+        }
+      }
+    },
+    "Show Tasks" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Tareas"
+          }
+        }
+      }
+    },
+    "Start timer" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar temporizador"
+          }
+        }
+      }
+    },
+    "Statistics" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadísticas"
+          }
+        }
+      }
+    },
+    "Task completed" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarea completada "
+          }
+        }
+      }
+    },
+    "Task Detail" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalle de la Tarea"
+          }
+        }
+      }
+    },
+    "Task text" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto de tarea"
+          }
+        }
+      }
+    },
+    "Tasks" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tareas"
+          }
+        }
+      }
+    },
+    "Tempus" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempus"
+          }
+        }
+      }
+    },
+    "This will permanently delete all completed tasks. This action cannot be undone." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto eliminará permanentemente todas las tareas completadas. Esta acción no se puede deshacer."
+          }
+        }
+      }
+    },
+    "Timer Durations" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duración del temporizador"
+          }
+        }
+      }
+    },
+    "Type" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        }
+      }
+    },
+    "Weekly Activity" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actividad semanal"
+          }
+        }
+      }
+    },
+    "Weekly activity chart showing focus minutes per day." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gráfico de actividad semanal muestra los minutos de concentración por día."
+          }
+        }
+      }
+    },
+    "When enabled, the timer will automatically start the next session (focus or break) without stopping." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando está habilitado, el temporizador iniciará automáticamente la siguiente sesión (concentración o descanso) sin detenerse."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
