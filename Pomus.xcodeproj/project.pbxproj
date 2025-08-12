@@ -80,6 +80,8 @@
 		BC97F4672E451CAE005F9450 /* PomusWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PomusWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA7BE482E1F6D9100C1581E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCAD05E52E2308E3009E3435 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		BCDFAF822E4BFDD4004A5BB4 /* Pomus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pomus.entitlements; sourceTree = "<group>"; };
+		BCDFAF832E4BFDDF004A5BB4 /* PomusWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PomusWidgetExtension.entitlements; sourceTree = "<group>"; };
 		BCEA7E942E1F2B6400CAEC2F /* Pomus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCEA7EA12E1F2B6600CAEC2F /* PomusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCEA7EAB2E1F2B6600CAEC2F /* PomusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +233,8 @@
 		BCEA7E8B2E1F2B6400CAEC2F = {
 			isa = PBXGroup;
 			children = (
+				BCDFAF832E4BFDDF004A5BB4 /* PomusWidgetExtension.entitlements */,
+				BCDFAF822E4BFDD4004A5BB4 /* Pomus.entitlements */,
 				BCA7BE542E1F6EBB00C1581E /* Models */,
 				BCA7BE552E1F6EBB00C1581E /* Resources */,
 				BCA7BE562E1F6EBB00C1581E /* Services */,
@@ -501,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PomusWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 398QF8G822;
@@ -528,6 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PomusWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 398QF8G822;
@@ -678,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Pomus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 398QF8G822;
@@ -710,6 +717,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Pomus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 398QF8G822;

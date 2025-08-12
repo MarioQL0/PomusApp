@@ -13,11 +13,7 @@ struct TasksView: View {
     // MARK: - Properties
     @ObservedObject var viewModel: PomodoroViewModel
     
-    // --- INTERRUPTOR PARA CAPTURAS DE PANTALLA ---
-    // ⚠️ Pon esto en 'false' antes de subir la app a la App Store.
-    @State private var useFakeDataForScreenshots = false
-    
-    // State for other UI interactions
+    @State private var useFakeDataForScreenshots = false // ⚠️ Pon en 'true' para screenshots
     @State private var taskToEdit: PomodoroTask?
     @State private var isAddingTask = false
     @State private var newTaskText = ""
@@ -30,7 +26,6 @@ struct TasksView: View {
             ZStack {
                 // Layer 1: The main content.
                 Group {
-                    // The view is considered empty only if not using fake data and both real task lists are empty.
                     let isContentEmpty = viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty
                     if isContentEmpty && !useFakeDataForScreenshots && !isAddingTask {
                         ContentUnavailableView {
@@ -65,10 +60,9 @@ struct TasksView: View {
             }
             .navigationTitle("Tasks")
             .toolbar {
-                // The "Clean" button
+                // Botón "Clean"
                 ToolbarItem(placement: .navigationBarLeading) {
-                    let shouldShowCleanButton = useFakeDataForScreenshots || !viewModel.completedTasks.isEmpty
-                    if shouldShowCleanButton {
+                    if useFakeDataForScreenshots || !viewModel.completedTasks.isEmpty {
                         Button("Clean", role: .destructive) {
                             showingCleanAlert = true
                         }
@@ -76,7 +70,7 @@ struct TasksView: View {
                     }
                 }
                 
-                // The "Edit" button for reordering
+                // Botón "Edit" para reordenar
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !useFakeDataForScreenshots {
                         EditButton()
@@ -116,11 +110,7 @@ struct TasksView: View {
             Button(action: submitNewTask) { Image(systemName: "checkmark.circle.fill").foregroundColor(.green) }
                 .disabled(newTaskText.isEmpty)
         }
-        .padding()
-        .background(.bar)
-        .cornerRadius(10)
-        .padding(.horizontal)
-        .padding(.bottom, 8)
+        .padding().background(.bar).cornerRadius(10).padding(.horizontal).padding(.bottom, 8)
         .transition(.offset(y: 100).combined(with: .opacity))
     }
     
@@ -132,11 +122,8 @@ struct TasksView: View {
                 isTextFieldFocused = true
             }) {
                 Image(systemName: "plus")
-                    .font(.system(.title, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(width: 60, height: 60)
-                    .background(Color.blue)
-                    .clipShape(Circle())
+                    .font(.system(.title, weight: .semibold)).foregroundColor(.white)
+                    .frame(width: 60, height: 60).background(Color.blue).clipShape(Circle())
                     .shadow(radius: 5, x: 0, y: 4)
             }
             .padding()
@@ -148,9 +135,7 @@ struct TasksView: View {
     private func submitNewTask() {
         if !newTaskText.isEmpty {
             viewModel.addTask(text: newTaskText)
-            newTaskText = ""
-            isTextFieldFocused = false
-            isAddingTask = false
+            newTaskText = ""; isTextFieldFocused = false; isAddingTask = false
         }
     }
 
@@ -181,7 +166,6 @@ struct TasksView: View {
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             if !useFakeDataForScreenshots {
                                 Button(role: .destructive) {
-                                    // Manually find the index and delete
                                     if let index = viewModel.pendingTasks.firstIndex(where: { $0.id == task.id }) {
                                         deletePendingTask(at: IndexSet(integer: index))
                                     }
@@ -204,32 +188,22 @@ struct TasksView: View {
         let tasksToShow = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
 
         if !tasksToShow.isEmpty {
-            Section {
+            Section(header: Text("Completed")) {
                 ForEach(tasksToShow) { task in
                     TaskRowView(task: task, viewModel: viewModel, isFake: useFakeDataForScreenshots)
                 }
                 .onDelete(perform: deleteCompletedTask)
-            } header: {
-                // The "Clean" button is in the main toolbar now for a cleaner look
-                Text("Completed")
             }
         }
     }
     
     // --- DATOS DE EJEMPLO PARA LAS CAPTURAS ---
     private var fakePendingTasks: [PomodoroTask] {
-        [
-            PomodoroTask(text: "Design the new app icon"),
-            PomodoroTask(text: "Prepare presentation for Monday"),
-            PomodoroTask(text: "Fix the layout bug on landscape")
-        ]
+        [ PomodoroTask(text: "Design the new app icon"), PomodoroTask(text: "Prepare presentation"), PomodoroTask(text: "Fix layout bug") ]
     }
     
     private var fakeCompletedTasks: [PomodoroTask] {
-        [
-            PomodoroTask(text: "Buy coffee for the team", isCompleted: true),
-            PomodoroTask(text: "Send weekly report", isCompleted: true)
-        ]
+        [ PomodoroTask(text: "Buy coffee", isCompleted: true), PomodoroTask(text: "Send weekly report", isCompleted: true) ]
     }
 }
 
@@ -245,7 +219,6 @@ struct TaskRowView: View {
                 .foregroundColor(task.isCompleted ? .green : .gray)
                 .font(.title2)
                 .onTapGesture {
-                    // Only allow toggling if it's not fake data
                     if !isFake {
                         withAnimation {
                             viewModel.toggleTaskCompletion(task: task)

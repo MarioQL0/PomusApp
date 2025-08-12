@@ -11,7 +11,6 @@ import SwiftUI
 
 public struct PomusActivityAttributes: ActivityAttributes {
     
-    // ContentState ahora contiene TODOS los datos que pueden cambiar.
     public struct ContentState: Codable, Hashable {
         public var timerRange: ClosedRange<Date>
         public var modeName: String
@@ -21,10 +20,14 @@ public struct PomusActivityAttributes: ActivityAttributes {
         public var sessionState: SessionState
     }
 
-    // Ya no hay datos estáticos aquí, solo es el tipo.
+    // No hay atributos estáticos.
     
+    // --- CORRECCIÓN ---
+    // Añadimos los estados que faltaban.
     public enum SessionState: String, Codable, Hashable {
         case running
         case finished
+        case paused
+        case transitioning // Un estado muy breve para los cambios de modo
     }
 }
