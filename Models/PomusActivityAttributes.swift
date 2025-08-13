@@ -9,12 +9,15 @@ import Foundation
 import ActivityKit
 import SwiftUI
 
-public struct PomusActivityAttributes: ActivityAttributes {
+/// ActivityKit attributes shared between the app and the widget extension.
+/// Default access level (`internal`) is sufficient because this file is
+/// included in both targets.
+struct PomusActivityAttributes: ActivityAttributes {
 
-    /// The dynamic content delivered to the live activity. It wraps the same
+    /// Dynamic content delivered to the live activity. It wraps the same
     /// `PomusTimerState` model used by the main app and the widget so all three
     /// surfaces remain synchronized.
-    public struct ContentState: Codable, Hashable {
-        public var timer: PomusTimerState
+    struct ContentState: Codable, Hashable {
+        var timer: PomusTimerState
     }
 }

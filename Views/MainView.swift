@@ -91,7 +91,7 @@ struct MainView: View {
             
             // Bottom control bar with the three main action buttons.
             HStack(spacing: 25) {
-                Button(action: viewModel.resetCurrentSession) {
+                Button(action: { viewModel.resetCurrentSession() }) {
                     Image(systemName: "arrow.counterclockwise")
                         .frame(width: 60, height: 60)
                         .background(Color.white.opacity(0.2))
@@ -157,7 +157,7 @@ struct MainView: View {
         HStack {
             Spacer()
             Button(action: { showStats.toggle() }) { Image(systemName: "chart.bar.xaxis") }.frame(maxWidth: .infinity)
-            Button(action: viewModel.resetCurrentSession) { Image(systemName: "arrow.counterclockwise") }.frame(maxWidth: .infinity)
+            Button(action: { viewModel.resetCurrentSession() }) { Image(systemName: "arrow.counterclockwise") }.frame(maxWidth: .infinity)
 
             Button(action: { viewModel.startPauseTimer() }) {
                 Image(systemName: viewModel.isRunning ? "pause.fill" : "play.fill")

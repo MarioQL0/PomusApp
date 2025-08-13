@@ -135,6 +135,26 @@ class PomodoroViewModel: ObservableObject {
     enum ClockViewType { case digital, analog }
 
     // MARK: - Timer Control
+    /// Starts a new session or toggles between pause and resume depending on
+    /// the current `timerState`. When idle it begins a focus session, when
+    /// running it pauses, and when paused it resumes.
+    func startPauseTimer() {
+        switch timerState.status {
+        case .idle:
+            startFocus()
+        case .focus, .breakTime:
+            pause()
+        case .paused:
+            resume()
+        }
+    }
+
+    /// Stops the current session and resets the timer to its initial state
+    /// without starting a new one.
+    func resetCurrentSession() {
+        stop()
+    }
+
     /// Starts a focus session using the configured `pomodoroDuration`.
     func startFocus() { startSession(duration: pomodoroDuration, status: .focus, modeName: "Focus", color: "FocusColor") }
 
