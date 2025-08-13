@@ -101,9 +101,12 @@ private struct CycleIndicatorView: View {
 }
 
 private struct GradientProgressBar: View {
-    let timerRange: ClosedRange<Date>; let color: Color
+    let timerRange: ClosedRange<Date>
+    let color: Color
+    
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1.0)) { context in
+        // La vista se actualiza cada segundo, ANCLADA al inicio del timer.
+        TimelineView(.periodic(from: timerRange.lowerBound, by: 1.0)) { context in
             let progress = progress(for: context.date)
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
@@ -112,7 +115,8 @@ private struct GradientProgressBar: View {
                 }
             }
         }
-        .frame(height: 8).clipShape(Capsule())
+        .frame(height: 8)
+        .clipShape(Capsule())
     }
     
     private func progress(for date: Date) -> Double {

@@ -135,6 +135,7 @@ class PomodoroViewModel: ObservableObject {
     private func startTimer() {
         guard !isRunning else { return }
         isRunning = true
+        updateSharedWidgetData()
         let endDate = Date().addingTimeInterval(timeLeft)
         scheduleNotification(at: endDate)
         
@@ -157,6 +158,7 @@ class PomodoroViewModel: ObservableObject {
     func pauseTimer() {
         guard isRunning else { return }
         isRunning = false
+        updateSharedWidgetData()
         timer?.cancel()
         endLiveActivity()
         cancelNotification()
@@ -164,7 +166,11 @@ class PomodoroViewModel: ObservableObject {
     }
 
     /// Resets the current session timer to its full duration.
-    func resetCurrentSession() { pauseTimer(); timeLeft = currentModeDuration }
+    func resetCurrentSession() {
+        pauseTimer();
+        timeLeft = currentModeDuration
+        updateSharedWidgetData()
+    }
     
     /// Skips the current session and moves to the next one in the cycle.
     func skipToNextMode() {
@@ -197,6 +203,7 @@ class PomodoroViewModel: ObservableObject {
         }
         
         timeLeft = currentModeDuration
+        updateSharedWidgetData()
         
         if isContinuousModeEnabled && wasRunning {
             updateLiveActivity()
@@ -348,7 +355,28 @@ class PomodoroViewModel: ObservableObject {
         let request = UNNotificationRequest(identifier: "pomodoroEnd", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
-    private func cancelNotification() { UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoroEnd"]) }
+    
+    private func cancelNotification() { UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoroEnd"])
+    }
+    
+    private func updateSharedWidgetData() {
+        // Usamos el App Group ID que corregimos
+        if let sharedDefaults = UserDefaults(suiteName: "group.com.marioquezada.Pomus") {
+            let startDate = Date()
+            // Si el temporizador no está corriendo, queremos que el widget muestre el tiempo completo, no el restante.
+            let effectiveTimeLeft = isRunning ? timeLeft : currentModeDuration
+            let endDate = startDate.addingTimeInterval(effectiveTimeLeft)
+            
+            sharedDefaults.set(startDate.timeIntervalSince1970, forKey: "startTS")
+            sharedDefaults.set(endDate.timeIntervalSince1970, forKey: "endTS")
+            sharedDefaults.set(isRunning, forKey: "isRunning")
+            sharedDefaults.set(modeTextForActivity, forKey: "mode")
+            sharedDefaults.set(colorNameForActivity, forKey: "modeColorName")
+            sharedDefaults.set(pomodoroSessionCount, forKey: "sessionCount")
+            sharedDefaults.set(sessionsBeforeLongBreak, forKey: "totalSessions")
+            sharedDefaults.set(currentModeDuration, forKey: "modeDuration")
+        }
+    }
     
     // MARK: - Persistence
     private func saveTasks() { let allTasks = pendingTasks + completedTasks; if let data = try? JSONEncoder().encode(allTasks) { UserDefaults.standard.set(data, forKey: tasksKey) } }
