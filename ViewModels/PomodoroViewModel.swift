@@ -10,6 +10,7 @@ import Combine
 import UserNotifications
 import AudioToolbox
 import ActivityKit
+import WidgetKit
 
 @MainActor
 class PomodoroViewModel: ObservableObject {
@@ -19,6 +20,7 @@ class PomodoroViewModel: ObservableObject {
     private let statsKey = "PomusStats_v3"
     private let settingsKey = "PomusSettings_v3"
     private let lastStateKey = "PomusLastState_v3"
+    private let appGroupID = "group.com.marioquezada.Pomus"
 
     // MARK: - Public State
     /// The time remaining in the current session, in seconds.
@@ -137,11 +139,12 @@ class PomodoroViewModel: ObservableObject {
         isRunning = true
         let endDate = Date().addingTimeInterval(timeLeft)
         scheduleNotification(at: endDate)
-        
+
         if currentActivity == nil {
             startLiveActivity()
         }
-        
+        updateWidget()
+
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { [weak self] _ in
             guard let self = self else { return }
             if self.timeLeft > 1 {
@@ -161,10 +164,15 @@ class PomodoroViewModel: ObservableObject {
         endLiveActivity()
         cancelNotification()
         UserDefaults.standard.removeObject(forKey: self.lastStateKey)
+        updateWidget()
     }
 
     /// Resets the current session timer to its full duration.
-    func resetCurrentSession() { pauseTimer(); timeLeft = currentModeDuration }
+    func resetCurrentSession() {
+        pauseTimer()
+        timeLeft = currentModeDuration
+        updateWidget()
+    }
     
     /// Skips the current session and moves to the next one in the cycle.
     func skipToNextMode() {
@@ -195,9 +203,10 @@ class PomodoroViewModel: ObservableObject {
             }
             currentMode = .pomodoro
         }
-        
+
         timeLeft = currentModeDuration
-        
+        updateWidget()
+
         if isContinuousModeEnabled && wasRunning {
             updateLiveActivity()
             startTimer()
@@ -298,8 +307,9 @@ class PomodoroViewModel: ObservableObject {
             let activity = try Activity<PomusActivityAttributes>.request(attributes: attributes, content: .init(state: state, staleDate: endDate))
             self.currentActivity = activity
         } catch { print("Error requesting Live Activity: \(error.localizedDescription)") }
+        updateWidget()
     }
-    
+
     func updateLiveActivity() {
         Task {
             let endDate = Date().addingTimeInterval(timeLeft)
@@ -314,8 +324,9 @@ class PomodoroViewModel: ObservableObject {
             )
             await currentActivity?.update(using: newState)
         }
+        updateWidget()
     }
-    
+
     /// Termina la Live Activity de forma inmediata, sin mostrar un estado final.
     func endLiveActivity() {
         Task {
@@ -323,6 +334,19 @@ class PomodoroViewModel: ObservableObject {
             await currentActivity?.end(nil, dismissalPolicy: .immediate)
             self.currentActivity = nil
         }
+    }
+
+    // MARK: - Widget Synchronization
+    private func updateWidget() {
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupID) else { return }
+        sharedDefaults.set(Date().timeIntervalSince1970, forKey: "startTS")
+        sharedDefaults.set(Date().addingTimeInterval(timeLeft).timeIntervalSince1970, forKey: "endTS")
+        sharedDefaults.set(isRunning, forKey: "isRunning")
+        sharedDefaults.set(modeTextForActivity, forKey: "mode")
+        sharedDefaults.set(colorNameForActivity, forKey: "modeColorName")
+        sharedDefaults.set(pomodoroSessionCount, forKey: "sessionCount")
+        sharedDefaults.set(sessionsBeforeLongBreak, forKey: "totalSessions")
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     private var modeTextForActivity: String {

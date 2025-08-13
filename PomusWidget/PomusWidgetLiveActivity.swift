@@ -103,12 +103,14 @@ private struct CycleIndicatorView: View {
 private struct GradientProgressBar: View {
     let timerRange: ClosedRange<Date>; let color: Color
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1.0)) { context in
+        TimelineView(.animation) { context in
             let progress = progress(for: context.date)
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Capsule().fill(color.opacity(0.3))
-                    Capsule().fill(color).frame(width: geometry.size.width * progress)
+                    Capsule()
+                        .fill(LinearGradient(colors: [color, color.opacity(0.7)], startPoint: .leading, endPoint: .trailing))
+                        .frame(width: geometry.size.width * progress)
                 }
             }
         }

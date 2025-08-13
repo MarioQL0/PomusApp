@@ -131,7 +131,13 @@ private struct CircularProgressView: View {
             let progress = progress(for: context.date)
             
             Circle().stroke(color.opacity(0.3), lineWidth: 8)
-            Circle().trim(from: 0, to: progress).stroke(color, style: StrokeStyle(lineWidth: 8, lineCap: .round)).rotationEffect(.degrees(-90))
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(
+                    AngularGradient(colors: [color, color.opacity(0.7)], center: .center),
+                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
         }
         .padding(4)
     }
