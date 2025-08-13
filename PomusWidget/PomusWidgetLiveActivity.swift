@@ -61,7 +61,9 @@ private struct LockScreenView: View {
                 Text(timerInterval: context.state.timerRange, countsDown: true)
                     .font(.title2.weight(.semibold).monospacedDigit()).contentTransition(.numericText()).foregroundColor(.primary)
             }
-            GradientProgressBar(timerRange: context.state.timerRange, color: Color(context.state.modeColorName))
+            GradientProgressBar(timerRange: context.state.timerRange,
+                                color: Color(context.state.modeColorName),
+                                isPaused: context.state.sessionState != .running)
         }
     }
     
@@ -83,7 +85,9 @@ private struct ExpandedIslandView: View {
                 Spacer()
                 Text(timerInterval: context.state.timerRange, countsDown: true).font(.subheadline.weight(.semibold).monospacedDigit()).contentTransition(.numericText())
             }
-            GradientProgressBar(timerRange: context.state.timerRange, color: Color(context.state.modeColorName))
+            GradientProgressBar(timerRange: context.state.timerRange,
+                                color: Color(context.state.modeColorName),
+                                isPaused: context.state.sessionState != .running)
         }
         .foregroundColor(Color(context.state.modeColorName))
     }
@@ -101,9 +105,12 @@ private struct CycleIndicatorView: View {
 }
 
 private struct GradientProgressBar: View {
-    let timerRange: ClosedRange<Date>; let color: Color
+    let timerRange: ClosedRange<Date>
+    let color: Color
+    var isPaused: Bool = false
+
     var body: some View {
-        TimelineView(.animation) { context in
+        TimelineView(.animation(paused: isPaused)) { context in
             let progress = progress(for: context.date)
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {

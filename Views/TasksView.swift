@@ -17,14 +17,18 @@ struct TasksView: View {
     @State private var taskToEdit: PomodoroTask?
     @State private var showingAddTask = false
     @State private var showingCleanAlert = false
+    @State private var searchText = ""
+    @State private var filter: Filter = .all
+
+    enum Filter: String, CaseIterable, Identifiable { case all = "All", pending = "Pending", completed = "Completed"; var id: Self { self } }
 
     // MARK: - Body
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // Layer 1: The main content.
                 Group {
-                    let isContentEmpty = viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty
+                    let isContentEmpty = filteredPending.isEmpty && filteredCompleted.isEmpty
                     if isContentEmpty && !useFakeDataForScreenshots {
                         ContentUnavailableView {
                             Label("No Tasks", systemImage: "checklist")
@@ -33,9 +37,16 @@ struct TasksView: View {
                         }
                     } else {
                         List {
-                            pendingTasksSection
-                            completedTasksSection
+                            Picker("Filter", selection: $filter) {
+                                ForEach(Filter.allCases) { Text($0.rawValue).tag($0) }
+                            }
+                            .pickerStyle(.segmented)
+                            .listRowInsets(EdgeInsets())
+
+                            if filter != .completed { pendingTasksSection }
+                            if filter != .pending { completedTasksSection }
                         }
+                        .listStyle(.insetGrouped)
                         .background(Color.clear)
                     }
                 }
@@ -82,6 +93,7 @@ struct TasksView: View {
                 AddTaskView(viewModel: viewModel)
             }
         }
+        .searchable(text: $searchText)
     }
     
     // MARK: - Subviews
@@ -119,7 +131,7 @@ struct TasksView: View {
     // MARK: - List Sections
     @ViewBuilder
     private var pendingTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakePendingTasks : viewModel.pendingTasks
+        let tasksToShow = filteredPending
         
         if !tasksToShow.isEmpty {
             Section(header: Text("Pending")) {
@@ -147,7 +159,7 @@ struct TasksView: View {
 
     @ViewBuilder
     private var completedTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
+        let tasksToShow = filteredCompleted
 
         if !tasksToShow.isEmpty {
             Section(header: Text("Completed")) {
@@ -166,6 +178,19 @@ struct TasksView: View {
     
     private var fakeCompletedTasks: [PomodoroTask] {
         [ PomodoroTask(text: "Buy coffee", isCompleted: true), PomodoroTask(text: "Send weekly report", isCompleted: true) ]
+    }
+}
+
+// MARK: - Filtering Helpers
+extension TasksView {
+    private var filteredPending: [PomodoroTask] {
+        let tasks = useFakeDataForScreenshots ? fakePendingTasks : viewModel.pendingTasks
+        return tasks.filter { searchText.isEmpty || $0.text.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    private var filteredCompleted: [PomodoroTask] {
+        let tasks = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
+        return tasks.filter { searchText.isEmpty || $0.text.localizedCaseInsensitiveContains(searchText) }
     }
 }
 
