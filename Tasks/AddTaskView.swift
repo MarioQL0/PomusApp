@@ -17,6 +17,10 @@ struct AddTaskView: View {
     
     /// @State to store the text the user is typing.
     @State private var newTaskText: String = ""
+    /// Controls whether the user wants to set a due date.
+    @State private var hasDueDate: Bool = false
+    /// The selected due date for the task.
+    @State private var dueDate: Date = Date()
     
     // MARK: - Body
     var body: some View {
@@ -26,6 +30,13 @@ struct AddTaskView: View {
                     // A TextField that allows for multiple lines.
                     TextField("e.g., Finish the sales report...", text: $newTaskText, axis: .vertical)
                         .lineLimit(3...)
+                }
+
+                Section {
+                    Toggle("Set Due Date", isOn: $hasDueDate.animation())
+                    if hasDueDate {
+                        DatePicker("Due Date", selection: $dueDate, displayedComponents: [.date, .hourAndMinute])
+                    }
                 }
             }
             .navigationTitle("New Task")
@@ -41,7 +52,8 @@ struct AddTaskView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         if !newTaskText.isEmpty {
-                            viewModel.addTask(text: newTaskText)
+                            let date = hasDueDate ? dueDate : nil
+                            viewModel.addTask(text: newTaskText, dueDate: date)
                             dismiss()
                         }
                     }

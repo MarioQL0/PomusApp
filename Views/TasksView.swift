@@ -15,9 +15,7 @@ struct TasksView: View {
     
     @State private var useFakeDataForScreenshots = false // ⚠️ Pon en 'true' para screenshots
     @State private var taskToEdit: PomodoroTask?
-    @State private var isAddingTask = false
-    @State private var newTaskText = ""
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var showingAddTask = false
     @State private var showingCleanAlert = false
 
     // MARK: - Body
@@ -27,7 +25,7 @@ struct TasksView: View {
                 // Layer 1: The main content.
                 Group {
                     let isContentEmpty = viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty
-                    if isContentEmpty && !useFakeDataForScreenshots && !isAddingTask {
+                    if isContentEmpty && !useFakeDataForScreenshots {
                         ContentUnavailableView {
                             Label("No Tasks", systemImage: "checklist")
                         } description: {
@@ -38,25 +36,15 @@ struct TasksView: View {
                             pendingTasksSection
                             completedTasksSection
                         }
-                        .background(
-                            Color.clear.contentShape(Rectangle())
-                                .onTapGesture {
-                                    isTextFieldFocused = false
-                                }
-                        )
+                        .background(Color.clear)
                     }
                 }
                 
-                // Layer 2: The conditional bottom UI.
+                // Layer 2: The floating action button.
                 VStack {
                     Spacer()
-                    if isAddingTask {
-                        addTaskBar
-                    } else {
-                        floatingActionButton
-                    }
+                    floatingActionButton
                 }
-                .animation(.spring(response: 0.4, dampingFraction: 0.8), value: isAddingTask)
             }
             .navigationTitle("Tasks")
             .toolbar {
@@ -90,36 +78,18 @@ struct TasksView: View {
             .sheet(item: $taskToEdit) { task in
                 EditTaskView(viewModel: viewModel, task: task)
             }
+            .sheet(isPresented: $showingAddTask) {
+                AddTaskView(viewModel: viewModel)
+            }
         }
     }
     
     // MARK: - Subviews
-    private var addTaskBar: some View {
-        HStack {
-            TextField("New task...", text: $newTaskText)
-                .focused($isTextFieldFocused)
-                .onSubmit(submitNewTask)
-
-            Button {
-                withAnimation {
-                    isAddingTask = false
-                    newTaskText = ""
-                }
-            } label: { Image(systemName: "xmark.circle.fill").foregroundColor(.gray) }
-            
-            Button(action: submitNewTask) { Image(systemName: "checkmark.circle.fill").foregroundColor(.green) }
-                .disabled(newTaskText.isEmpty)
-        }
-        .padding().background(.bar).cornerRadius(10).padding(.horizontal).padding(.bottom, 8)
-        .transition(.offset(y: 100).combined(with: .opacity))
-    }
-    
     private var floatingActionButton: some View {
         HStack {
             Spacer()
             Button(action: {
-                isAddingTask = true
-                isTextFieldFocused = true
+                showingAddTask = true
             }) {
                 Image(systemName: "plus")
                     .font(.system(.title, weight: .semibold)).foregroundColor(.white)
@@ -129,14 +99,6 @@ struct TasksView: View {
             .padding()
         }
         .transition(.offset(y: 100).combined(with: .opacity))
-    }
-
-    // MARK: - Helper Functions
-    private func submitNewTask() {
-        if !newTaskText.isEmpty {
-            viewModel.addTask(text: newTaskText)
-            newTaskText = ""; isTextFieldFocused = false; isAddingTask = false
-        }
     }
 
     private func deletePendingTask(at offsets: IndexSet) {
@@ -225,10 +187,17 @@ struct TaskRowView: View {
                         }
                     }
                 }
-            
-            Text(task.text)
-                .strikethrough(task.isCompleted)
-                .foregroundColor(task.isCompleted ? .gray : .primary)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(task.text)
+                    .strikethrough(task.isCompleted)
+                    .foregroundColor(task.isCompleted ? .gray : .primary)
+                if let due = task.dueDate {
+                    Text(due, style: .date)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
         }
     }
 }

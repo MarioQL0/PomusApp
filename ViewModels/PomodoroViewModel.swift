@@ -228,12 +228,17 @@ class PomodoroViewModel: ObservableObject {
     func resetPomodoroCycle() { pomodoroSessionCount = 0 }
     
     // MARK: - Task Management
-    func addTask(text: String) { pendingTasks.append(PomodoroTask(text: text)) }
-    func updateTask(task: PomodoroTask, newText: String) {
+    func addTask(text: String, dueDate: Date? = nil) {
+        pendingTasks.append(PomodoroTask(text: text, dueDate: dueDate))
+    }
+
+    func updateTask(task: PomodoroTask, newText: String, newDueDate: Date?) {
         if let index = pendingTasks.firstIndex(where: { $0.id == task.id }) {
             pendingTasks[index].text = newText
+            pendingTasks[index].dueDate = newDueDate
         } else if let index = completedTasks.firstIndex(where: { $0.id == task.id }) {
             completedTasks[index].text = newText
+            completedTasks[index].dueDate = newDueDate
         }
     }
     func toggleTaskCompletion(task: PomodoroTask) {
