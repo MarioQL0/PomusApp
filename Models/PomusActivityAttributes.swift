@@ -18,6 +18,7 @@ public struct PomusActivityAttributes: ActivityAttributes {
         public var sessionCount: Int
         public var totalSessions: Int
         public var sessionState: SessionState
+        public var remaining: TimeInterval
     }
 
     // No hay atributos estáticos.

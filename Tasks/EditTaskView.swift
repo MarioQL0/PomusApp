@@ -18,6 +18,10 @@ struct EditTaskView: View {
     
     /// @State to store the edited text. It's initialized with the task's current text.
     @State private var editedText: String
+    /// Controls whether the task has a due date.
+    @State private var hasDueDate: Bool
+    /// The selected due date.
+    @State private var dueDate: Date
     
     /// Custom initializer to pre-fill the text field.
     init(viewModel: PomodoroViewModel, task: PomodoroTask) {
@@ -25,6 +29,8 @@ struct EditTaskView: View {
         self.task = task
         // _editedText is how you access the State wrapper for initialization.
         _editedText = State(initialValue: task.text)
+        _hasDueDate = State(initialValue: task.dueDate != nil)
+        _dueDate = State(initialValue: task.dueDate ?? Date())
     }
     
     // MARK: - Body
@@ -35,6 +41,13 @@ struct EditTaskView: View {
                     TextField("Task text", text: $editedText, axis: .vertical)
                         .lineLimit(3...)
                 }
+
+                Section {
+                    Toggle("Set Due Date", isOn: $hasDueDate.animation())
+                    if hasDueDate {
+                        DatePicker("Due Date", selection: $dueDate, displayedComponents: [.date, .hourAndMinute])
+                    }
+                }
             }
             .navigationTitle("Edit Task")
             .navigationBarTitleDisplayMode(.inline)
@@ -44,7 +57,8 @@ struct EditTaskView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        viewModel.updateTask(task: task, newText: editedText)
+                        let date = hasDueDate ? dueDate : nil
+                        viewModel.updateTask(task: task, newText: editedText, newDueDate: date)
                         dismiss()
                     }
                     .disabled(editedText.isEmpty)

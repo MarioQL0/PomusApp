@@ -16,6 +16,8 @@ struct PomodoroTask: Identifiable, Codable, Hashable {
     var id = UUID()
     /// The text or description of the task.
     var text: String
+    /// The optional due date for the task.
+    var dueDate: Date? = nil
     /// A boolean indicating whether the task has been completed.
     var isCompleted: Bool = false
 }

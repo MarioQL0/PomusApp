@@ -15,19 +15,21 @@ struct TasksView: View {
     
     @State private var useFakeDataForScreenshots = false // ⚠️ Pon en 'true' para screenshots
     @State private var taskToEdit: PomodoroTask?
-    @State private var isAddingTask = false
-    @State private var newTaskText = ""
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var showingAddTask = false
     @State private var showingCleanAlert = false
+    @State private var searchText = ""
+    @State private var filter: Filter = .all
+
+    enum Filter: String, CaseIterable, Identifiable { case all = "All", pending = "Pending", completed = "Completed"; var id: Self { self } }
 
     // MARK: - Body
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // Layer 1: The main content.
                 Group {
-                    let isContentEmpty = viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty
-                    if isContentEmpty && !useFakeDataForScreenshots && !isAddingTask {
+                    let isContentEmpty = filteredPending.isEmpty && filteredCompleted.isEmpty
+                    if isContentEmpty && !useFakeDataForScreenshots {
                         ContentUnavailableView {
                             Label("No Tasks", systemImage: "checklist")
                         } description: {
@@ -35,28 +37,25 @@ struct TasksView: View {
                         }
                     } else {
                         List {
-                            pendingTasksSection
-                            completedTasksSection
+                            Picker("Filter", selection: $filter) {
+                                ForEach(Filter.allCases) { Text($0.rawValue).tag($0) }
+                            }
+                            .pickerStyle(.segmented)
+                            .listRowInsets(EdgeInsets())
+
+                            if filter != .completed { pendingTasksSection }
+                            if filter != .pending { completedTasksSection }
                         }
-                        .background(
-                            Color.clear.contentShape(Rectangle())
-                                .onTapGesture {
-                                    isTextFieldFocused = false
-                                }
-                        )
+                        .listStyle(.insetGrouped)
+                        .background(Color.clear)
                     }
                 }
                 
-                // Layer 2: The conditional bottom UI.
+                // Layer 2: The floating action button.
                 VStack {
                     Spacer()
-                    if isAddingTask {
-                        addTaskBar
-                    } else {
-                        floatingActionButton
-                    }
+                    floatingActionButton
                 }
-                .animation(.spring(response: 0.4, dampingFraction: 0.8), value: isAddingTask)
             }
             .navigationTitle("Tasks")
             .toolbar {
@@ -90,36 +89,19 @@ struct TasksView: View {
             .sheet(item: $taskToEdit) { task in
                 EditTaskView(viewModel: viewModel, task: task)
             }
+            .sheet(isPresented: $showingAddTask) {
+                AddTaskView(viewModel: viewModel)
+            }
         }
+        .searchable(text: $searchText)
     }
     
     // MARK: - Subviews
-    private var addTaskBar: some View {
-        HStack {
-            TextField("New task...", text: $newTaskText)
-                .focused($isTextFieldFocused)
-                .onSubmit(submitNewTask)
-
-            Button {
-                withAnimation {
-                    isAddingTask = false
-                    newTaskText = ""
-                }
-            } label: { Image(systemName: "xmark.circle.fill").foregroundColor(.gray) }
-            
-            Button(action: submitNewTask) { Image(systemName: "checkmark.circle.fill").foregroundColor(.green) }
-                .disabled(newTaskText.isEmpty)
-        }
-        .padding().background(.bar).cornerRadius(10).padding(.horizontal).padding(.bottom, 8)
-        .transition(.offset(y: 100).combined(with: .opacity))
-    }
-    
     private var floatingActionButton: some View {
         HStack {
             Spacer()
             Button(action: {
-                isAddingTask = true
-                isTextFieldFocused = true
+                showingAddTask = true
             }) {
                 Image(systemName: "plus")
                     .font(.system(.title, weight: .semibold)).foregroundColor(.white)
@@ -129,14 +111,6 @@ struct TasksView: View {
             .padding()
         }
         .transition(.offset(y: 100).combined(with: .opacity))
-    }
-
-    // MARK: - Helper Functions
-    private func submitNewTask() {
-        if !newTaskText.isEmpty {
-            viewModel.addTask(text: newTaskText)
-            newTaskText = ""; isTextFieldFocused = false; isAddingTask = false
-        }
     }
 
     private func deletePendingTask(at offsets: IndexSet) {
@@ -157,7 +131,7 @@ struct TasksView: View {
     // MARK: - List Sections
     @ViewBuilder
     private var pendingTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakePendingTasks : viewModel.pendingTasks
+        let tasksToShow = filteredPending
         
         if !tasksToShow.isEmpty {
             Section(header: Text("Pending")) {
@@ -185,7 +159,7 @@ struct TasksView: View {
 
     @ViewBuilder
     private var completedTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
+        let tasksToShow = filteredCompleted
 
         if !tasksToShow.isEmpty {
             Section(header: Text("Completed")) {
@@ -207,6 +181,19 @@ struct TasksView: View {
     }
 }
 
+// MARK: - Filtering Helpers
+extension TasksView {
+    private var filteredPending: [PomodoroTask] {
+        let tasks = useFakeDataForScreenshots ? fakePendingTasks : viewModel.pendingTasks
+        return tasks.filter { searchText.isEmpty || $0.text.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    private var filteredCompleted: [PomodoroTask] {
+        let tasks = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
+        return tasks.filter { searchText.isEmpty || $0.text.localizedCaseInsensitiveContains(searchText) }
+    }
+}
+
 // MARK: - Task Row View
 struct TaskRowView: View {
     let task: PomodoroTask
@@ -225,10 +212,17 @@ struct TaskRowView: View {
                         }
                     }
                 }
-            
-            Text(task.text)
-                .strikethrough(task.isCompleted)
-                .foregroundColor(task.isCompleted ? .gray : .primary)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(task.text)
+                    .strikethrough(task.isCompleted)
+                    .foregroundColor(task.isCompleted ? .gray : .primary)
+                if let due = task.dueDate {
+                    Text(due, style: .date)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
         }
     }
 }

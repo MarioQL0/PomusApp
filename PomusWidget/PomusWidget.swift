@@ -7,8 +7,10 @@
 
 import WidgetKit
 import SwiftUI
+import OSLog
 
-private let appGroupID = "group.com.marioquezada.Pomus" // El mismo ID
+private let appGroupID = "group.com.marioquezada.Pomus" // Shared App Group
+private let logger = Logger(subsystem: "com.marioquezada.Pomus", category: "Widget")
 
 // MARK: - Provider (Lógica de Datos del Widget)
 struct Provider: TimelineProvider {
@@ -23,25 +25,27 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<PomusEntry>) -> ()) {
         let entry = readCurrentEntry()
         let timeline = Timeline(entries: [entry], policy: .after(entry.timerRange.upperBound))
+        logger.debug("Timeline generated")
         completion(timeline)
     }
 
     private func readCurrentEntry() -> PomusEntry {
-        guard let sharedDefaults = UserDefaults(suiteName: appGroupID) else {
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupID),
+              let data = sharedDefaults.data(forKey: "timerState"),
+              let state = try? JSONDecoder().decode(SharedTimerState.self, from: data) else {
             return PomusEntry.placeholder
         }
-        
-        let startDate = Date(timeIntervalSince1970: sharedDefaults.double(forKey: "startTS"))
-        let endDate = Date(timeIntervalSince1970: sharedDefaults.double(forKey: "endTS"))
-        
+
+        let entryDate = state.isPaused ? state.endDate.addingTimeInterval(-state.remaining) : Date()
+
         return PomusEntry(
-            date: Date(),
-            timerRange: startDate...endDate,
-            isRunning: sharedDefaults.bool(forKey: "isRunning"),
-            mode: sharedDefaults.string(forKey: "mode") ?? "Focus",
-            modeColorName: sharedDefaults.string(forKey: "modeColorName") ?? "FocusColor",
-            sessionCount: sharedDefaults.integer(forKey: "sessionCount"),
-            totalSessions: sharedDefaults.integer(forKey: "totalSessions")
+            date: entryDate,
+            timerRange: state.startDate...state.endDate,
+            isRunning: !state.isPaused,
+            mode: state.mode,
+            modeColorName: state.modeColorName,
+            sessionCount: state.sessionCount,
+            totalSessions: state.totalSessions
         )
     }
 }
@@ -65,31 +69,95 @@ struct PomusEntry: TimelineEntry {
 struct PomusWidgetEntryView : View {
     var entry: PomusEntry
     let color: Color
-    
+    @Environment(\.widgetFamily) private var family
+
     init(entry: PomusEntry) {
         self.entry = entry
         self.color = Color(entry.modeColorName)
     }
 
     var body: some View {
+        switch family {
+        case .systemMedium: mediumView
+        case .systemLarge: largeView
+        default: smallView
+        }
+    }
+
+    // Small widget layout
+    private var smallView: some View {
         ZStack {
             CircularProgressView(timerRange: entry.timerRange, color: color, isRunning: entry.isRunning)
-            
+                .frame(width: 120, height: 120)
+
             VStack(spacing: 4) {
                 Text(entry.mode)
                     .font(.caption.weight(.bold))
                     .foregroundColor(color)
-                
+
                 Text(timerInterval: entry.timerRange, countsDown: true)
                     .font(.title2.weight(.semibold).monospacedDigit())
                     .contentTransition(.numericText())
-                
+
                 CycleIndicatorView(sessionCount: entry.sessionCount,
                                    totalSessions: entry.totalSessions,
                                    color: .secondary)
             }
             .padding(.bottom, 4)
         }
+        .padding(8)
+        .containerBackground(for: .widget) {}
+    }
+
+    // Medium widget layout
+    private var mediumView: some View {
+        HStack(spacing: 12) {
+            CircularProgressView(timerRange: entry.timerRange, color: color, isRunning: entry.isRunning)
+                .frame(width: 80, height: 80)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(entry.mode)
+                    .font(.headline.weight(.bold))
+                    .foregroundColor(color)
+
+                Text(timerInterval: entry.timerRange, countsDown: true)
+                    .font(.title3.weight(.semibold).monospacedDigit())
+                    .contentTransition(.numericText())
+
+                GradientProgressBar(timerRange: entry.timerRange, color: color)
+                    .frame(height: 8)
+
+                CycleIndicatorView(sessionCount: entry.sessionCount,
+                                   totalSessions: entry.totalSessions,
+                                   color: .secondary)
+            }
+        }
+        .padding()
+        .containerBackground(for: .widget) {}
+    }
+
+    // Large widget layout
+    private var largeView: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text(entry.mode)
+                    .font(.title2.weight(.bold))
+                    .foregroundColor(color)
+                Spacer()
+                CycleIndicatorView(sessionCount: entry.sessionCount,
+                                   totalSessions: entry.totalSessions,
+                                   color: .secondary)
+            }
+
+            Text(timerInterval: entry.timerRange, countsDown: true)
+                .font(.system(size: 44, weight: .semibold, design: .monospaced))
+                .contentTransition(.numericText())
+                .foregroundColor(.primary)
+
+            GradientProgressBar(timerRange: entry.timerRange, color: color)
+                .frame(height: 12)
+        }
+        .padding()
         .containerBackground(for: .widget) {}
     }
 }
@@ -103,7 +171,7 @@ struct PomusWidget: Widget {
         }
         .configurationDisplayName("Pomus Timer")
         .description("Track your current session on your Home Screen.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
@@ -131,7 +199,13 @@ private struct CircularProgressView: View {
             let progress = progress(for: context.date)
             
             Circle().stroke(color.opacity(0.3), lineWidth: 8)
-            Circle().trim(from: 0, to: progress).stroke(color, style: StrokeStyle(lineWidth: 8, lineCap: .round)).rotationEffect(.degrees(-90))
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(
+                    AngularGradient(colors: [color, color.opacity(0.7)], center: .center),
+                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
         }
         .padding(4)
     }
@@ -139,6 +213,34 @@ private struct CircularProgressView: View {
     private func progress(for date: Date) -> Double {
         let totalDuration = timerRange.upperBound.timeIntervalSince(timerRange.lowerBound)
         guard totalDuration > 0 else { return isRunning ? 1 : 0 }
+        let timeElapsed = date.timeIntervalSince(timerRange.lowerBound)
+        return min(max(timeElapsed / totalDuration, 0), 1)
+    }
+}
+
+// Linear gradient progress bar used in medium and large widgets
+private struct GradientProgressBar: View {
+    let timerRange: ClosedRange<Date>
+    let color: Color
+
+    var body: some View {
+        TimelineView(.animation) { context in
+            let progress = progress(for: context.date)
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(color.opacity(0.3))
+                    Capsule()
+                        .fill(LinearGradient(colors: [color, color.opacity(0.7)], startPoint: .leading, endPoint: .trailing))
+                        .frame(width: geometry.size.width * progress)
+                }
+            }
+        }
+        .clipShape(Capsule())
+    }
+
+    private func progress(for date: Date) -> Double {
+        let totalDuration = timerRange.upperBound.timeIntervalSince(timerRange.lowerBound)
+        guard totalDuration > 0 else { return 0 }
         let timeElapsed = date.timeIntervalSince(timerRange.lowerBound)
         return min(max(timeElapsed / totalDuration, 0), 1)
     }
