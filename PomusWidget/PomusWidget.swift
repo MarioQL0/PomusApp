@@ -25,13 +25,15 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<PomusEntry>) -> ()) {
         let entry = readCurrentEntry()
         let policy: TimelineReloadPolicy
-        if let end = entry.timer.endDate {
+        if entry.timer.status == .paused || entry.timer.status == .idle {
+            policy = .never
+        } else if let end = entry.timer.endDate {
             policy = .after(end)
         } else {
             policy = .never
         }
         let timeline = Timeline(entries: [entry], policy: policy)
-        logger.debug("Timeline generated")
+        logger.debug("Timeline generated with policy \(String(describing: policy))")
         completion(timeline)
     }
 
