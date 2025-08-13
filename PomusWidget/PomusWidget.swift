@@ -7,8 +7,10 @@
 
 import WidgetKit
 import SwiftUI
+import OSLog
 
-private let appGroupID = "group.com.marioquezada.Pomus" // El mismo ID
+private let appGroupID = "group.com.marioquezada.Pomus" // Shared App Group
+private let logger = Logger(subsystem: "com.marioquezada.Pomus", category: "Widget")
 
 // MARK: - Provider (Lógica de Datos del Widget)
 struct Provider: TimelineProvider {
@@ -23,25 +25,27 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<PomusEntry>) -> ()) {
         let entry = readCurrentEntry()
         let timeline = Timeline(entries: [entry], policy: .after(entry.timerRange.upperBound))
+        logger.debug("Timeline generated")
         completion(timeline)
     }
 
     private func readCurrentEntry() -> PomusEntry {
-        guard let sharedDefaults = UserDefaults(suiteName: appGroupID) else {
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupID),
+              let data = sharedDefaults.data(forKey: "timerState"),
+              let state = try? JSONDecoder().decode(SharedTimerState.self, from: data) else {
             return PomusEntry.placeholder
         }
-        
-        let startDate = Date(timeIntervalSince1970: sharedDefaults.double(forKey: "startTS"))
-        let endDate = Date(timeIntervalSince1970: sharedDefaults.double(forKey: "endTS"))
-        
+
+        let entryDate = state.isPaused ? state.endDate.addingTimeInterval(-state.remaining) : Date()
+
         return PomusEntry(
-            date: Date(),
-            timerRange: startDate...endDate,
-            isRunning: sharedDefaults.bool(forKey: "isRunning"),
-            mode: sharedDefaults.string(forKey: "mode") ?? "Focus",
-            modeColorName: sharedDefaults.string(forKey: "modeColorName") ?? "FocusColor",
-            sessionCount: sharedDefaults.integer(forKey: "sessionCount"),
-            totalSessions: sharedDefaults.integer(forKey: "totalSessions")
+            date: entryDate,
+            timerRange: state.startDate...state.endDate,
+            isRunning: !state.isPaused,
+            mode: state.mode,
+            modeColorName: state.modeColorName,
+            sessionCount: state.sessionCount,
+            totalSessions: state.totalSessions
         )
     }
 }
@@ -84,6 +88,7 @@ struct PomusWidgetEntryView : View {
     private var smallView: some View {
         ZStack {
             CircularProgressView(timerRange: entry.timerRange, color: color, isRunning: entry.isRunning)
+                .frame(width: 120, height: 120)
 
             VStack(spacing: 4) {
                 Text(entry.mode)

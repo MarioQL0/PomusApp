@@ -11,6 +11,7 @@ import UserNotifications
 import AudioToolbox
 import ActivityKit
 import WidgetKit
+import OSLog
 
 @MainActor
 class PomodoroViewModel: ObservableObject {
@@ -21,6 +22,7 @@ class PomodoroViewModel: ObservableObject {
     private let settingsKey = "PomusSettings_v3"
     private let lastStateKey = "PomusLastState_v3"
     private let appGroupID = "group.com.marioquezada.Pomus"
+    private let logger = Logger(subsystem: "com.marioquezada.Pomus", category: "Timer")
 
     // MARK: - Public State
     /// The time remaining in the current session, in seconds.
@@ -141,6 +143,7 @@ class PomodoroViewModel: ObservableObject {
     private func startTimer() {
         guard !isRunning else { return }
         isRunning = true
+        logger.debug("Timer started")
 
         // Configure start/end dates so progress can be tracked across widgets and live activities.
         sessionStartDate = Date().addingTimeInterval(-(currentModeDuration - timeLeft))
@@ -155,7 +158,7 @@ class PomodoroViewModel: ObservableObject {
         } else {
             updateLiveActivity(sessionState: .running)
         }
-        updateWidget()
+        syncSharedState(reason: "start")
 
         // Use the stored end date to compute remaining time for higher accuracy.
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { [weak self] _ in
@@ -171,6 +174,7 @@ class PomodoroViewModel: ObservableObject {
     func pauseTimer() {
         guard isRunning else { return }
         isRunning = false
+        logger.debug("Timer paused")
         timer?.cancel()
         // Update remaining time from the stored end date.
         if let end = sessionEndDate {
@@ -179,17 +183,18 @@ class PomodoroViewModel: ObservableObject {
         cancelNotification()
         updateLiveActivity(sessionState: .paused)
         saveLastState()
-        updateWidget()
+        syncSharedState(reason: "pause")
     }
 
     /// Resets the current session timer to its full duration.
     func resetCurrentSession() {
         pauseTimer()
+        logger.debug("Timer reset")
         timeLeft = currentModeDuration
         sessionStartDate = Date()
         sessionEndDate = Date().addingTimeInterval(currentModeDuration)
         updateLiveActivity(sessionState: .paused)
-        updateWidget()
+        syncSharedState(reason: "reset")
         saveLastState()
     }
     
@@ -210,6 +215,7 @@ class PomodoroViewModel: ObservableObject {
         timer?.cancel()
         sessionStartDate = nil
         sessionEndDate = nil
+        logger.debug("Session finished")
         AudioServicesPlaySystemSound(1005)
 
         if currentMode == .pomodoro {
@@ -228,16 +234,16 @@ class PomodoroViewModel: ObservableObject {
         timeLeft = currentModeDuration
         sessionStartDate = Date()
         sessionEndDate = Date().addingTimeInterval(currentModeDuration)
-        updateWidget()
 
         if isContinuousModeEnabled && wasRunning {
-            updateLiveActivity(sessionState: .running)
-            startTimer()
+        updateLiveActivity(sessionState: .running)
+        startTimer()
         } else {
             updateLiveActivity(sessionState: .finished)
             endLiveActivity()
         }
         saveLastState()
+        syncSharedState(reason: "sessionFinished")
     }
     
     /// Shows the "Cycle Complete!" pop-up and hides it after a delay.
@@ -326,16 +332,20 @@ class PomodoroViewModel: ObservableObject {
                 content: .init(state: state, staleDate: sessionEndDate)
             )
             self.currentActivity = activity
-        } catch { print("Error requesting Live Activity: \(error.localizedDescription)") }
-        updateWidget()
+            logger.debug("Live activity started")
+        } catch {
+            logger.error("Error requesting Live Activity: \(error.localizedDescription)")
+        }
+        syncSharedState(reason: "startActivity")
     }
 
     func updateLiveActivity(sessionState: PomusActivityAttributes.SessionState = .running) {
         Task {
             let newState = makeContentState(sessionState: sessionState)
             await currentActivity?.update(using: newState)
+            logger.debug("Live activity update: \(sessionState.rawValue)")
         }
-        updateWidget()
+        syncSharedState(reason: "updateActivity")
     }
 
     private func makeContentState(sessionState: PomusActivityAttributes.SessionState) -> PomusActivityAttributes.ContentState {
@@ -347,7 +357,8 @@ class PomodoroViewModel: ObservableObject {
             modeColorName: colorNameForActivity,
             sessionCount: self.pomodoroSessionCount,
             totalSessions: self.sessionsBeforeLongBreak,
-            sessionState: sessionState
+            sessionState: sessionState,
+            remaining: timeLeft
         )
     }
 
@@ -357,22 +368,33 @@ class PomodoroViewModel: ObservableObject {
             // Se pasa 'nil' como contenido y la política de descarte es '.immediate'.
             await currentActivity?.end(nil, dismissalPolicy: .immediate)
             self.currentActivity = nil
+            logger.debug("Live activity ended")
         }
     }
 
-    // MARK: - Widget Synchronization
-    private func updateWidget() {
-        guard let sharedDefaults = UserDefaults(suiteName: appGroupID) else { return }
-        let start = sessionStartDate ?? Date().addingTimeInterval(-(currentModeDuration - timeLeft))
-        let end = sessionEndDate ?? Date().addingTimeInterval(timeLeft)
-        sharedDefaults.set(start.timeIntervalSince1970, forKey: "startTS")
-        sharedDefaults.set(end.timeIntervalSince1970, forKey: "endTS")
-        sharedDefaults.set(isRunning, forKey: "isRunning")
-        sharedDefaults.set(modeTextForActivity, forKey: "mode")
-        sharedDefaults.set(colorNameForActivity, forKey: "modeColorName")
-        sharedDefaults.set(pomodoroSessionCount, forKey: "sessionCount")
-        sharedDefaults.set(sessionsBeforeLongBreak, forKey: "totalSessions")
+    // MARK: - Widget & Extension Synchronization
+    private func syncSharedState(reason: String) {
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupID),
+              let start = sessionStartDate,
+              let end = sessionEndDate else { return }
+
+        let state = SharedTimerState(
+            startDate: start,
+            endDate: end,
+            isPaused: !isRunning,
+            mode: modeTextForActivity,
+            modeColorName: colorNameForActivity,
+            sessionCount: pomodoroSessionCount,
+            totalSessions: sessionsBeforeLongBreak,
+            remaining: timeLeft
+        )
+
+        if let data = try? JSONEncoder().encode(state) {
+            sharedDefaults.set(data, forKey: "timerState")
+        }
+
         WidgetCenter.shared.reloadAllTimelines()
+        logger.info("Shared state sync: \(reason)")
     }
     
     private var modeTextForActivity: String {

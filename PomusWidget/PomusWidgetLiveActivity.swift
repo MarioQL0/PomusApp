@@ -63,6 +63,7 @@ private struct LockScreenView: View {
             }
             GradientProgressBar(timerRange: context.state.timerRange,
                                 color: Color(context.state.modeColorName),
+                                remaining: context.state.remaining,
                                 isPaused: context.state.sessionState != .running)
         }
     }
@@ -87,6 +88,7 @@ private struct ExpandedIslandView: View {
             }
             GradientProgressBar(timerRange: context.state.timerRange,
                                 color: Color(context.state.modeColorName),
+                                remaining: context.state.remaining,
                                 isPaused: context.state.sessionState != .running)
         }
         .foregroundColor(Color(context.state.modeColorName))
@@ -107,6 +109,7 @@ private struct CycleIndicatorView: View {
 private struct GradientProgressBar: View {
     let timerRange: ClosedRange<Date>
     let color: Color
+    var remaining: TimeInterval
     var isPaused: Bool = false
 
     var body: some View {
@@ -123,11 +126,15 @@ private struct GradientProgressBar: View {
         }
         .frame(height: 8).clipShape(Capsule())
     }
-    
+
     private func progress(for date: Date) -> Double {
         let totalDuration = timerRange.upperBound.timeIntervalSince(timerRange.lowerBound)
         guard totalDuration > 0 else { return 0 }
-        let timeElapsed = date.timeIntervalSince(timerRange.lowerBound)
-        return min(max(timeElapsed / totalDuration, 0), 1)
+        if isPaused {
+            return 1 - (remaining / totalDuration)
+        } else {
+            let timeElapsed = date.timeIntervalSince(timerRange.lowerBound)
+            return min(max(timeElapsed / totalDuration, 0), 1)
+        }
     }
 }

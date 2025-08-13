@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct PomusWidgetBundle: WidgetBundle {
     var body: some Widget {
+        PomusWidget()
         PomusWidgetLiveActivity()
-
     }
 }
