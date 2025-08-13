@@ -10,25 +10,11 @@ import ActivityKit
 import SwiftUI
 
 public struct PomusActivityAttributes: ActivityAttributes {
-    
-    public struct ContentState: Codable, Hashable {
-        public var timerRange: ClosedRange<Date>
-        public var modeName: String
-        public var modeColorName: String
-        public var sessionCount: Int
-        public var totalSessions: Int
-        public var sessionState: SessionState
-        public var remaining: TimeInterval
-    }
 
-    // No hay atributos estáticos.
-    
-    // --- CORRECCIÓN ---
-    // Añadimos los estados que faltaban.
-    public enum SessionState: String, Codable, Hashable {
-        case running
-        case finished
-        case paused
-        case transitioning // Un estado muy breve para los cambios de modo
+    /// The dynamic content delivered to the live activity. It wraps the same
+    /// `PomusTimerState` model used by the main app and the widget so all three
+    /// surfaces remain synchronized.
+    public struct ContentState: Codable, Hashable {
+        public var timer: PomusTimerState
     }
 }
