@@ -1,21 +1,8 @@
-//
-//  ContentView.swift
-//  Times Up
-//
-//  Created by Luis Mario Quezada Elizondo on 11/07/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainView()
     }
 }
 

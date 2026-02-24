@@ -1,234 +1,102 @@
-//
-//  TasksView.swift
-//  Tempus
-//
-//  Created by Luis Mario Quezada Elizondo on 11/07/25.
-//
-
-
 import SwiftUI
 
-/// Main view for managing the task list.
 struct TasksView: View {
-    // MARK: - Properties
     @ObservedObject var viewModel: PomodoroViewModel
-    
-    @State private var useFakeDataForScreenshots = false // ⚠️ Pon en 'true' para screenshots
-    @State private var taskToEdit: PomodoroTask?
-    @State private var isAddingTask = false
-    @State private var newTaskText = ""
-    @FocusState private var isTextFieldFocused: Bool
-    @State private var showingCleanAlert = false
 
-    // MARK: - Body
+    @State private var taskToEdit: PomodoroTask?
+    @State private var newTaskText = ""
+
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Layer 1: The main content.
-                Group {
-                    let isContentEmpty = viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty
-                    if isContentEmpty && !useFakeDataForScreenshots && !isAddingTask {
-                        ContentUnavailableView {
-                            Label("No Tasks", systemImage: "checklist")
-                        } description: {
-                            Text("Add your first task using the + button.")
+        NavigationStack {
+            VStack(spacing: 16) {
+                HStack(spacing: 10) {
+                    TextField("Agregar tarea…", text: $newTaskText)
+                        .textFieldStyle(.roundedBorder)
+                        .onSubmit(addTask)
+
+                    Button(action: addTask) {
+                        Image(systemName: "plus")
+                            .font(.headline)
+                            .frame(width: 40, height: 40)
+                            .background(Color.accentColor, in: Circle())
+                            .foregroundStyle(.white)
+                    }
+                    .disabled(newTaskText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+
+                List {
+                    if !viewModel.pendingTasks.isEmpty {
+                        Section("Pendientes") {
+                            ForEach(viewModel.pendingTasks) { task in
+                                taskRow(task)
+                            }
+                            .onDelete { viewModel.deleteTask(at: $0, in_completedList: false) }
+                            .onMove(perform: viewModel.movePendingTask)
                         }
-                    } else {
-                        List {
-                            pendingTasksSection
-                            completedTasksSection
+                    }
+
+                    if !viewModel.completedTasks.isEmpty {
+                        Section("Completadas") {
+                            ForEach(viewModel.completedTasks) { task in
+                                taskRow(task)
+                            }
+                            .onDelete { viewModel.deleteTask(at: $0, in_completedList: true) }
                         }
-                        .background(
-                            Color.clear.contentShape(Rectangle())
-                                .onTapGesture {
-                                    isTextFieldFocused = false
-                                }
-                        )
                     }
                 }
-                
-                // Layer 2: The conditional bottom UI.
-                VStack {
-                    Spacer()
-                    if isAddingTask {
-                        addTaskBar
-                    } else {
-                        floatingActionButton
+                .overlay {
+                    if viewModel.pendingTasks.isEmpty && viewModel.completedTasks.isEmpty {
+                        ContentUnavailableView("Sin tareas", systemImage: "checklist", description: Text("Empieza con una tarea simple y mantenla visible."))
                     }
                 }
-                .animation(.spring(response: 0.4, dampingFraction: 0.8), value: isAddingTask)
+                .listStyle(.insetGrouped)
             }
-            .navigationTitle("Tasks")
+            .padding(.horizontal)
+            .navigationTitle("Tareas")
             .toolbar {
-                // Botón "Clean"
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if useFakeDataForScreenshots || !viewModel.completedTasks.isEmpty {
-                        Button("Clean", role: .destructive) {
-                            showingCleanAlert = true
-                        }
-                        .disabled(useFakeDataForScreenshots)
+                ToolbarItem(placement: .topBarTrailing) { EditButton() }
+                ToolbarItem(placement: .topBarLeading) {
+                    if !viewModel.completedTasks.isEmpty {
+                        Button("Limpiar", role: .destructive, action: viewModel.clearCompletedTasks)
                     }
                 }
-                
-                // Botón "Edit" para reordenar
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if !useFakeDataForScreenshots {
-                        EditButton()
-                    }
-                }
-            }
-            .alert("Clear Completed Tasks?", isPresented: $showingCleanAlert) {
-                Button("Cancel", role: .cancel) { }
-                Button("Clear", role: .destructive) {
-                    withAnimation {
-                        viewModel.clearCompletedTasks()
-                    }
-                }
-            } message: {
-                Text("This will permanently delete all completed tasks. This action cannot be undone.")
             }
             .sheet(item: $taskToEdit) { task in
                 EditTaskView(viewModel: viewModel, task: task)
             }
         }
     }
-    
-    // MARK: - Subviews
-    private var addTaskBar: some View {
-        HStack {
-            TextField("New task...", text: $newTaskText)
-                .focused($isTextFieldFocused)
-                .onSubmit(submitNewTask)
 
+    private func taskRow(_ task: PomodoroTask) -> some View {
+        HStack(spacing: 10) {
             Button {
-                withAnimation {
-                    isAddingTask = false
-                    newTaskText = ""
-                }
-            } label: { Image(systemName: "xmark.circle.fill").foregroundColor(.gray) }
-            
-            Button(action: submitNewTask) { Image(systemName: "checkmark.circle.fill").foregroundColor(.green) }
-                .disabled(newTaskText.isEmpty)
-        }
-        .padding().background(.bar).cornerRadius(10).padding(.horizontal).padding(.bottom, 8)
-        .transition(.offset(y: 100).combined(with: .opacity))
-    }
-    
-    private var floatingActionButton: some View {
-        HStack {
-            Spacer()
-            Button(action: {
-                isAddingTask = true
-                isTextFieldFocused = true
-            }) {
-                Image(systemName: "plus")
-                    .font(.system(.title, weight: .semibold)).foregroundColor(.white)
-                    .frame(width: 60, height: 60).background(Color.blue).clipShape(Circle())
-                    .shadow(radius: 5, x: 0, y: 4)
+                withAnimation { viewModel.toggleTaskCompletion(task: task) }
+            } label: {
+                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(task.isCompleted ? .green : .secondary)
             }
-            .padding()
-        }
-        .transition(.offset(y: 100).combined(with: .opacity))
-    }
+            .buttonStyle(.plain)
 
-    // MARK: - Helper Functions
-    private func submitNewTask() {
-        if !newTaskText.isEmpty {
-            viewModel.addTask(text: newTaskText)
-            newTaskText = ""; isTextFieldFocused = false; isAddingTask = false
-        }
-    }
-
-    private func deletePendingTask(at offsets: IndexSet) {
-        guard !useFakeDataForScreenshots else { return }
-        viewModel.deleteTask(at: offsets, in_completedList: false)
-    }
-
-    private func deleteCompletedTask(at offsets: IndexSet) {
-        guard !useFakeDataForScreenshots else { return }
-        viewModel.deleteTask(at: offsets, in_completedList: true)
-    }
-    
-    private func movePendingTask(from source: IndexSet, to destination: Int) {
-        guard !useFakeDataForScreenshots else { return }
-        viewModel.movePendingTask(from: source, to: destination)
-    }
-
-    // MARK: - List Sections
-    @ViewBuilder
-    private var pendingTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakePendingTasks : viewModel.pendingTasks
-        
-        if !tasksToShow.isEmpty {
-            Section(header: Text("Pending")) {
-                ForEach(tasksToShow) { task in
-                    TaskRowView(task: task, viewModel: viewModel, isFake: useFakeDataForScreenshots)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                            if !useFakeDataForScreenshots {
-                                Button(role: .destructive) {
-                                    if let index = viewModel.pendingTasks.firstIndex(where: { $0.id == task.id }) {
-                                        deletePendingTask(at: IndexSet(integer: index))
-                                    }
-                                } label: { Label("Delete", systemImage: "trash") }
-                            }
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                            if !useFakeDataForScreenshots {
-                                Button { taskToEdit = task } label: { Label("Edit", systemImage: "pencil") }.tint(.blue)
-                            }
-                        }
-                }
-                .onMove(perform: movePendingTask)
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var completedTasksSection: some View {
-        let tasksToShow = useFakeDataForScreenshots ? fakeCompletedTasks : viewModel.completedTasks
-
-        if !tasksToShow.isEmpty {
-            Section(header: Text("Completed")) {
-                ForEach(tasksToShow) { task in
-                    TaskRowView(task: task, viewModel: viewModel, isFake: useFakeDataForScreenshots)
-                }
-                .onDelete(perform: deleteCompletedTask)
-            }
-        }
-    }
-    
-    // --- DATOS DE EJEMPLO PARA LAS CAPTURAS ---
-    private var fakePendingTasks: [PomodoroTask] {
-        [ PomodoroTask(text: "Design the new app icon"), PomodoroTask(text: "Prepare presentation"), PomodoroTask(text: "Fix layout bug") ]
-    }
-    
-    private var fakeCompletedTasks: [PomodoroTask] {
-        [ PomodoroTask(text: "Buy coffee", isCompleted: true), PomodoroTask(text: "Send weekly report", isCompleted: true) ]
-    }
-}
-
-// MARK: - Task Row View
-struct TaskRowView: View {
-    let task: PomodoroTask
-    @ObservedObject var viewModel: PomodoroViewModel
-    var isFake: Bool = false
-    
-    var body: some View {
-        HStack {
-            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(task.isCompleted ? .green : .gray)
-                .font(.title2)
-                .onTapGesture {
-                    if !isFake {
-                        withAnimation {
-                            viewModel.toggleTaskCompletion(task: task)
-                        }
-                    }
-                }
-            
             Text(task.text)
                 .strikethrough(task.isCompleted)
-                .foregroundColor(task.isCompleted ? .gray : .primary)
+                .foregroundStyle(task.isCompleted ? .secondary : .primary)
+
+            Spacer()
+
+            Button {
+                taskToEdit = task
+            } label: {
+                Image(systemName: "pencil")
+                    .foregroundStyle(.secondary)
+            }
+            .buttonStyle(.plain)
         }
+    }
+
+    private func addTask() {
+        let cleanText = newTaskText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !cleanText.isEmpty else { return }
+        viewModel.addTask(text: cleanText)
+        newTaskText = ""
     }
 }
