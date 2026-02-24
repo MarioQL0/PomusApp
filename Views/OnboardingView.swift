@@ -1,84 +1,45 @@
-//
-//  OnboardingView.swift
-//  Tempus
-//
-//  Created by Luis Mario Quezada Elizondo on 12/07/25.
-//
-
 import SwiftUI
 
-/// A reusable view for a single page in the onboarding flow.
-struct OnboardingPageView: View {
-    let imageName: String
-    let title: String
-    let description: String
-
-    var body: some View {
-        VStack(spacing: 20) {
-            Image(systemName: imageName)
-                .font(.system(size: 100, weight: .light))
-                .foregroundColor(.accentColor)
-            
-            Text(title)
-                .font(.title).bold()
-            
-            Text(description)
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-        }
-        .padding(.horizontal, 40)
-    }
-}
-
-
-/// The main onboarding view that contains multiple swipeable pages.
 struct OnboardingView: View {
-    // This action will be passed from the parent view to dismiss the sheet.
     var onComplete: () -> Void
 
     var body: some View {
-        VStack {
+        VStack(spacing: 24) {
             Spacer()
-            
-            // TabView with PageTabViewStyle creates the swipeable interface.
+
             TabView {
-                OnboardingPageView(
-                    imageName: "hand.tap",
-                    title: "Skip a Session",
-                    description: "Double-tap the clock to skip the current session and move to the next one."
-                )
-                
-                OnboardingPageView(
-                    imageName: "hand.draw",
-                    title: "Change Clock Style",
-                    description: "Long-press the clock to switch between the modern digital and classic analog views."
-                )
-                
-                OnboardingPageView(
-                    imageName: "hand.point.left.and.right",
-                    title: "Manage Your Tasks",
-                    description: "In the task list, swipe a task to the right to Edit, or to the left to Delete."
-                )
+                onboardingCard(icon: "timer", title: "Flujo claro", description: "Temporizador limpio, sin distracciones y con transiciones suaves.")
+                onboardingCard(icon: "hand.tap", title: "Gestos rápidos", description: "Doble toque para saltar sesión y pulsación larga para cambiar el estilo del reloj.")
+                onboardingCard(icon: "checklist", title: "Tareas integradas", description: "Gestiona tareas sin salir del enfoque diario.")
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            
-            Spacer()
-            
-            // Button to finish the onboarding.
-            Button("Get Started") {
+            .tabViewStyle(.page)
+
+            Button("Empezar") {
                 onComplete()
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
-            .padding(.bottom, 50)
+
+            Spacer(minLength: 20)
+        }
+        .padding()
+    }
+
+    private func onboardingCard(icon: String, title: String, description: String) -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 56))
+                .foregroundStyle(.accent)
+            Text(title)
+                .font(.title2.weight(.semibold))
+            Text(description)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal)
         }
     }
 }
 
-
-// MARK: - Preview
 #Preview {
-    // We pass an empty action for the preview.
     OnboardingView(onComplete: {})
 }
